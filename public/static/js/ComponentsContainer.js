@@ -16,14 +16,15 @@ export default class loadComponentsContainer {
         let self = this;
         // self.summer_note_ele = document.getElementById('quick-file-editor').contentWindow.document.getElementsByClassName('note-editable')[0];
         // return self.summer_note_ele.innerHTML;
-        // return $('#quick-file-editor').val();
-        return $("#quick-file-editor").summernote('code');
+        return $('#quick-file-editor').val();
+        // return $("#quick-file-editor").summernote('code');
     }
     set_text_editor_content(content) {
         let self = this;
         // document.getElementById('quick-file-editor').contentWindow.document.getElementsByClassName('note-editable')[0].innerHTML = content;
         // $($('.note-editable')[0]).html(content);
-        $("#quick-file-editor").summernote('code', content); //$('#quick-file-editor').val(content);
+        // $("#quick-file-editor").summernote('code', content); 
+        $('#quick-file-editor').val(content);
     }
 
     initialize_summernote_for_quick_note() {
@@ -190,7 +191,7 @@ export default class loadComponentsContainer {
         $('#left-and-middle-section').css({ 'width': self.left_and_middle_section });
         let file_editor_obj = $(file_editor).removeClass('text-editor-in-middle-section').addClass('text-editor-in-right-side-components');
         $('#right-side-components-container').append(file_editor_obj);
-        self.initialize_summernote_for_quick_note();
+        // self.initialize_summernote_for_quick_note();
         self.fillRightSideComponents(self.curr_file_uuid);
 
         if (!$('#right-side-components').hasClass('right-side-components-full-screen')) {
@@ -410,7 +411,7 @@ export default class loadComponentsContainer {
                             self.tsp.GlobalConstants.current_window = 3;
                             self._video_switch_action_function();
                         });
-                        self.initialize_summernote_for_quick_note();
+                        // self.initialize_summernote_for_quick_note();
                     } else if (self.active_switch == "file-switch") {
                         $('#video-stream-in-file-factory').hide();
                         $('#quick-notes-in-file-factory').show();
@@ -936,7 +937,7 @@ export default class loadComponentsContainer {
         this.events_map = {};
         this.cache_elements();
         this.action_functions();
-        this.initialize_summernote_for_quick_note();
+        // this.initialize_summernote_for_quick_note();
         this.open_file_list_context_menu();
         this._create_new_file_factory_form();
         this._initialize_file_chat_switches_events();
