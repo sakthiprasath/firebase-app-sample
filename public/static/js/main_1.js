@@ -22,6 +22,7 @@ import {
     FireBase,
     QuickNoteFirebase
 } from './FireBase.js';
+
 class Tsp {
     constructor() {}
 }
