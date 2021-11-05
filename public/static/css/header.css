@@ -1,0 +1,204 @@
+#top-header {
+    position: fixed;
+    display: grid;
+    z-index: 10 !important;
+    box-shadow: rgb(152 191 168) 0px 0.1px 13px;
+    width: 55px;
+    background: #f4f7f9;
+}
+
+.top-header-top-margin {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 50px;
+    grid-template-columns: 2fr 3fr 1fr 0.6fr;
+}
+
+.top-header-right-margin {
+    top: 0px !important;
+    right: 0px !important;
+    width: 125px !important;
+    height: 100% !important;
+    top: 0px !important;
+    grid-template-rows: 1fr 4fr 1fr 0.6fr;
+}
+
+.top-header-bottom-margin {
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 50px;
+    grid-template-columns: 2fr 3fr 1fr 0.6fr;
+}
+
+.top-header-left-margin {
+    top: 0px !important;
+    left: 0px !important;
+    width: 125px;
+    height: 100% !important;
+    top: 0px !important;
+    grid-template-rows: 3fr 0.3fr 0.3fr;
+}
+
+.top-header-right-margin-tab-options {
+    flex-wrap: wrap !important;
+    column-gap: 0px !important;
+    width: 90% !important;
+    margin: 4px;
+}
+
+#tab-options-section {
+    height: 85%;
+    top: 25px;
+    position: relative;
+}
+
+#logo-section {
+    position: relative;
+}
+
+.logo-section-top-margin {
+    height: 100%;
+    top: 0%;
+    display: flex;
+}
+
+.logo-section-right-margin {
+    top: 1%;
+}
+
+#prime-notes-logo {
+    width: 50px;
+    height: 40px;
+    top: 4px;
+    position: inherit;
+    left: 32%;
+    cursor: pointer;
+}
+
+.logo-font {
+    position: relative;
+    font-size: 90%;
+    font-family: cursive;
+    color: #e9f3ed;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#user-name-section {
+    display: flex;
+    align-items: center;
+}
+
+#user-name-section-right-margin {
+    position: absolute;
+    bottom: 5%;
+    left: 15px;
+    width: 80%;
+}
+
+#header-orientation {
+    display: block;
+    top: 9px;
+}
+
+#left-header-id {
+    width: 20px !important;
+    margin-left: 4px;
+    margin-top: 18px;
+    font-family: cursive;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+#left-header-id-span {
+    position: absolute;
+    top: -14px;
+    left: 4px;
+}
+
+#top-header-id {
+    width: 50px !important;
+    margin-left: 33px;
+    padding-left: 21px;
+    font-family: cursive;
+    font-size: 31px;
+    cursor: pointer;
+}
+
+#top-header-id-span {
+    position: absolute;
+    margin-top: -5px;
+    margin-left: -4px;
+}
+
+#right-header-id {
+    width: 20px !important;
+    margin-left: 94px;
+    margin-top: 18px;
+    font-family: cursive;
+    cursor: pointer;
+}
+
+#right-header-id-span {
+    position: absolute;
+    top: -12px;
+    left: 6px;
+    font-size: 26px;
+}
+
+#bottom-header-id {
+    width: 50px !important;
+    margin-left: 33px;
+    margin-top: 31px;
+    cursor: pointer;
+}
+
+#bottom-header-id-span {
+    position: absolute;
+    margin-top: -23px;
+    margin-left: 17px;
+    font-size: 33px;
+    font-family: cursive;
+    transform: rotate(180deg);
+}
+
+.top-header-orientation {
+    position: absolute;
+    width: 14px;
+    height: 16px;
+    background: white;
+    background: #2b95ea;
+    color: white;
+}
+
+.top-header-drag-bar {
+    width: 1px;
+    background: rgb(233 243 237);
+}
+
+.button-with-icon-in-header {
+    color: rgb(213 0 249);
+    font-size: 12px;
+    padding: 3px !important;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 500;
+    display: grid;
+    grid-template-rows: 2fr 2.5fr;
+}
+
+.top-header-icons {
+    width: 22px !important;
+    height: 21px !important;
+    position: relative;
+    top: 15%;
+    margin-left: 9px !important;
+    margin-top: 3.5px !important;
+}
+
+.top-header-highlighter {
+    border-left: 2px solid #5089c6;
+}

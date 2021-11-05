@@ -1,0 +1,262 @@
+@charset "ISO-8859-1";
+.action-on-file-folder {
+    display: grid;
+    height: 40px;
+    color: #3498db;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background: #e9f3ed;
+    min-width: 50px;
+    max-width: 350px;
+    border-radius: 20px;
+    border: 1px solid #e9f3ed;
+    margin-left: 23px;
+    width: 250px;
+    margin-top: 20px;
+}
+
+.action-on-file-folder>i {
+    position: relative;
+    width: 20px !important;
+    height: 20px !important;
+    background: #e8f7ee;
+    font-size: 18px !important;
+    margin-left: 16px !important;
+    margin-top: 8px !important;
+}
+
+.action-on-file-folder>img {
+    width: 25px;
+    height: 25px;
+}
+
+
+/*Create Editor Icons*/
+
+.plus.circle.icon,
+.minus.circle.icon {
+    position: absolute;
+    font-size: 15px;
+    padding: 6px;
+}
+
+i.icon,
+i.icons {
+    color: #035397 !important;
+}
+
+
+/*custome tree css*/
+
+ul,
+#myUL {
+    list-style-type: none;
+}
+
+#myUL {
+    margin: 0px 0 0 5px;
+    padding: 0;
+    overflow: scroll;
+    width: max-content;
+    left: -10px;
+    position: relative;
+}
+
+.folder-section {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    width: 700px;
+    margin-left: -10px;
+}
+
+#myUL .folder {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: max-content;
+    padding: 5px;
+    padding-left: 13px;
+    color: #362e77;
+}
+
+
+/*.folder::before {
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+  margin-top:10px;
+}*/
+
+.three-dots {
+    font-size: 24px;
+    position: relative;
+    width: max-content;
+    cursor: pointer;
+    right: 0px;
+    display: none;
+    margin-left: 6px;
+    margin-top: 6px;
+}
+
+.three-dots:hover {
+    font-size: 26px !important;
+    transition-duration: 0.5s;
+}
+
+.tree-file>.three-dots {
+    margin-top: -10px;
+}
+
+.folder-correction span.folder {
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.folder-correction .three-dots {
+    margin-top: -7px;
+}
+
+.folder-section:hover .three-dots {
+    display: block;
+}
+
+.folder-section:hover {
+    background: #cce2d6;
+    color: #362e77;
+}
+
+.tree-file:hover .three-dots {
+    display: block;
+}
+
+.folder-down::before {
+    -ms-transform: rotate(90deg);
+    /* IE 9 */
+    -webkit-transform: rotate(90deg);
+    /* Safari */
+    '
+ transform: rotate(90deg);
+}
+
+.open-close-folder {
+    position: relative;
+    left: -15px;
+    font-size: 22px;
+    font-family: cursive;
+    left: 0px;
+    top: 1px;
+    cursor: pointer;
+}
+
+.tree-file {
+    height: max-content;
+    width: 80px;
+    right: 11px;
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+    width: max-content;
+    padding-left: 7px;
+}
+
+li.tree-file:hover {
+    background: #d9ece2;
+}
+
+.nested {
+    display: none;
+    left: -24px;
+    position: relative;
+    margin-top: -6px !important;
+}
+
+.nested>li {
+    width: max-content;
+    cursor: pointer;
+    margin-top: 5px;
+    min-width: max-content;
+    max-width: 100%;
+}
+
+.active {
+    display: block;
+}
+
+.project-file-active {
+    padding-right: 0px;
+    margin-left: 1px;
+    color: #29278e !important;
+    border-left: 0px solid #cba8d2;
+    font-weight: 700 !important;
+}
+
+.file-click {
+    display: grid;
+    grid-template-columns: 0.3fr max-content;
+    text-decoration: none !important;
+}
+
+.tree-note-file-name-div {
+    width: 15px;
+    height: 15px;
+    margin-top: 4px;
+}
+
+.tree-note-file-name-div>span {
+    font-size: 21px;
+}
+
+.tree-note-file-name {
+    padding: 4px;
+    padding-left: 11px;
+    padding-top: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, "Droid Sans", "Helvetica Neue", sans-serif;
+    width: inherit;
+}
+
+span.tree-note-file-name:hover {
+    color: #362e77;
+}
+
+#myUL:hover::-webkit-scrollbar-thumb {
+    width: 6px;
+    display: block !important;
+    overflow: scroll;
+}
+
+#tree-note-icons-panel {
+    left: 41px;
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    column-gap: 11px;
+    justify-content: space-between;
+    width: 167px;
+    margin-left: -13px;
+    height: 35px;
+}
+
+#tree-note-icons-panel:hover {
+    border: 1.9px solid #aaddbe;
+    padding: 5px;
+    border-radius: 15px;
+    justify-content: space-evenly;
+}
+
+.tree-note-icons {
+    width: 20px;
+    height: 20px;
+    background: #e9f3ed;
+}
+
+
+/*modal size on tree clone*/
+
+.model-content-on-tree-clone {
+    width: 90% !important;
+    height: 90%;
+    margin-top: -55px;
+    position: absolute !important;
+    left: 6%;
+    padding: 50px;
+}

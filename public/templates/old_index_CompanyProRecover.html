@@ -1,0 +1,1124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <!--
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    -->
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prime Notes</title>
+    <script src="../static/js/lib/jquery.min.js">
+    </script>
+
+    <script src="/node_modules/firebase/firebase-app.js"></script>
+    <script src="/node_modules/firebase/firebase-auth.js"></script>
+    <script src="/node_modules/firebase/firebase-firestore.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+    <script type="text/javascript" src="../static/js/lib/jquery-ui/jquery-latest.js"></script>
+    <script type="text/javascript" src="../static/js/lib/jquery-ui/jquery-ui-latest.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js">
+        /
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/header.css" />
+    <link rel="stylesheet" href="../static/css/utils.css" />
+    <link rel="stylesheet" href="../static/css/ComponentEditor.css" />
+    <link rel="stylesheet" href="../static/css/ResultIframe.css" />
+    <link rel="stylesheet" href="../static/css/DetailsPanel.css" />
+
+    <link rel="preconnect" href="https://fonts.g../static.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="../static/css/button.css" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/DocumentSection.css" />
+    <link rel="stylesheet" href="../static/css/QuickFileEditor.css" />
+
+    <link rel="stylesheet" href="../static/css/NavigationBar.css" />
+
+    <link type="text/css" rel="stylesheet" href="../static/css/treeView.css" />
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet' />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/theme/material.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!--					<script type="text/javascript" src="../static/js/treeview.js"></script>-->
+
+    <!--					<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+    <script src="https://www.w3schools.com/lib/codemirror_jsx.js"></script>
+
+
+    <!--					<script type='module'>-->
+    <!--import loadComponentsContainer from './js/ComponentsContainer.js';-->
+    <!--import IndividualComponentEditor from './js/DomEvents.js';-->
+
+    <!--window.loadComponentsContainer=loadComponentsContainer;-->
+    <!--window.IndividualComponenrtEditor=IndividualComponentEditor;-->
+    <!--</script>-->
+    <!-- progress loading before website loads -->
+
+    <div id="firebaseui-auth-container"></div>
+    <div id="loading-container" style="
+    width: 50%;
+    left: 25%;
+    height: 40%;
+    position: absolute;
+    top: 18%;
+    display: grid;
+    grid-template-rows: 3fr 3fr;
+    z-index: 1;
+    ">
+        <img id="logo-in-progressbar" src="/../static/images/logo_with_quotes.PNG" alt="logo" style="
+    margin-left: calc(50% - 81px);
+">
+        <div style="
+		display: grid;
+		grid-template-rows: 4fr 10fr;
+		">
+
+            <div style="color: #9279f5;" class="label">
+
+                <span>Prime</span><span style="
+    color: #361e5d;
+"> notes</span>
+
+            </div>
+            <div style="color: black;" class="label">
+
+                <span style="
+    font-size: 13px;
+    letter-spacing: 9px;
+    color: #361e5d;
+    font-weight: 700;
+    font-variant-caps: all-petite-caps;
+">A Productivity Booster</span>
+            </div>
+
+            <div class="ui  teal success" id="pre-loader-bar" data-percent="100">
+                <div class="bar" style="transition-duration: 300ms; width: 100%;">
+                    <div class="progress">100%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</head>
+
+<body>
+
+    <div id="top-header" class="top-header-left-margin">
+
+        <div id="tab-options-section">
+            <div id="top-header-tab-options" class="tab-options top-header-right-margin-tab-options">
+
+                <div id="close-editor-button" data-tooltip="quick notes" data-position="right center" class="file-switch button-with-icon-in-header" style="display: grid; grid-template-columns: 2fr 4fr; height: 45px;">
+                    <img class="top-header-icons" src="https://cdn2.iconfinder.com/data/icons/favorite-and-like/512/favorite-like-button-21-512.png" alt="Bolt, fast, flash, instant, lightning, quick, thunder icon - Download on Iconfinder">
+                    <span class="open-close tab-option-buttons-right-in-margin" style="background: rgb(45, 87, 121); color: rgb(241, 247, 249); display: none;">Quick
+                        Notes</span>
+                </div>
+
+                <!--                <div id="main-section-button" class="button-with-icon-in-header" data-tooltip="Tree notes" data-position="right center" style="display: grid; grid-template-columns: 2fr 4fr; height: 45px;">-->
+                <!--                    <img class="top-header-icons" src="https://img.icons8.com/color/48/000000/folder-tree.png" alt="Bolt, fast, flash, instant, lightning, quick, thunder icon - Download on Iconfinder" class="d-block mx-auto">-->
+                <!--                    <span class="open-close tab-option-buttons-right-in-margin" title="" style="background: rgb(45, 87, 121); color: rgb(241, 247, 249); display: none;">-->
+                <!--                        <span style="padding:3px">Tree Notes</span>-->
+                <!--                    </span>-->
+                <!--                </div>-->
+
+                <div id="open-close-overlay" class="video-stream-switch button-with-icon-in-header" data-tooltip="Video Notes" data-position="right center" style="display: grid; grid-template-columns: 2fr 4fr; height: 45px;">
+                    <img class="top-header-icons" src="https://www.flaticon.com/svg/../static/icons/svg/1412/1412629.svg" alt="Bolt, fast, flash, instant, lightning, quick, thunder icon - Download on Iconfinder" class="d-block mx-auto">
+                    <span class="open-close tab-option-buttons-right-in-margin" style="background: rgb(45, 87, 121); color: rgb(241, 247, 249); display: none;">
+                        <span style="padding:3px">Video Notes</span>
+                    </span>
+                </div>
+
+                <!--					<div class="button-with-icon-in-header" style="-->
+                <!--						display: grid;-->
+                <!--						grid-template-columns: 1fr 3fr;-->
+                <!--						">-->
+                <!--									<img src="https://cdn2.iconfinder.com/data/icons/favorite-and-like/512/favorite-like-button-21-512.png" alt="Bolt, fast, flash, instant, lightning, quick, thunder icon - Download on Iconfinder" class="d-block mx-auto" style="-->
+                <!--										width: 70%;-->
+                <!--										height: 60%;-->
+                <!--										position: relative;-->
+                <!--										top: 23%;-->
+                <!--									">-->
+                <!--						<span id="open-youtube-frame" class="button open-close" style="" style="background: rgb(45 87 121);color: rgb(241 247 249);">-->
+                <!--							<img class="thumb" src="https://image.flaticon.com/icons/png/512/15/15077.png" alt="Computer screen Free Icon" data-pin-no-hover="true" onerror="this.onerror=null;ga('send', 'event', 'broken_image', 'detail', '318_752318');" style="-->
+                <!--								width: 20px;-->
+                <!--								height: 20px;-->
+                <!--							">-->
+                <!--						</span>-->
+                <!--					</div>-->
+
+                <!--					<div id="html-renderer" class="button-with-icon-in-header" data-tooltip="HTML Editor" data-position="right center" style="display: grid; grid-template-columns: 2fr 4fr; height: 45px;">-->
+                <!--									<img class="top-header-icons" src="https://www.codepile.net/images/logo.png" alt="Bolt, fast, flash, instant, lightning, quick, thunder icon - Download on Iconfinder" class="d-block mx-auto" >-->
+                <!--						<span class="open-close tab-option-buttons-right-in-margin" title="" style="background: rgb(45, 87, 121); color: rgb(241, 247, 249); display: none;">-->
+                <!--							<span style="padding:3px">Html Editor</span>-->
+                <!--						</span>-->
+                <!--					</div>-->
+            </div>
+        </div>
+
+        <div id="top-header-preferences" class="button-with-icon-in-header" data-tooltip="overall Preferences" data-position="right center" style="display: grid; grid-template-columns: 27fr 4fr; background-color: rgb(233, 243, 237);height:7.5%;">
+            <img src="https://cdn.onlinewebfonts.com/svg/img_77554.png" alt="Bolt, fast, flash, instant, lightning, quick, thunder icon - Download on Iconfinder" class="d-block mx-auto" style="
+								width: 18px;
+								height: 18px;
+								position: relative;
+								top: 23%;
+								margin-left: 16px !important;
+							">
+            <span class="file-switch open-close tab-option-buttons-right-in-margin" style="background: rgb(45, 87, 121); color: rgb(241, 247, 249); display: none; margin-top: 3px; width: 100% !important;">Preferences</span>
+        </div>
+        <div id="user-name-section" class="button-with-icon-in-header" data-tooltip="SAKTHIPRASATH Tamilazhagan" data-position="right center" style="display: grid; grid-template-columns: 3fr 4fr; background-color: rgb(233, 243, 237);height:5%;">
+            <img src="https://secure.gravatar.com/avatar/d2e20c788a53eb35044eada00ca76d95?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FS-6.png" alt="Bolt, fast, flash, instant, lightning, quick, thunder icon - Download on Iconfinder"
+                class="d-block mx-auto" style="
+								height: 36px;
+                                width: 36px;
+                                border: 1px solid #a9cde7;
+                                border-radius: 50%;
+                                margin-left: 5px !important;
+                                position: relative;
+                                padding: 1px;
+							">
+            <span class="file-switch open-close tab-option-buttons-right-in-margin" data-toggle="tooltip" title="" data-placement="auto" data-original-title="Notes with Text Editor Options" style="background: rgb(45, 87, 121); color: rgb(241, 247, 249); display: none; width: 100% !important;">Sakthi</span>
+        </div>
+
+
+        <!--	<div id="header-orientation">-->
+
+        <!--		<div id="left-header-id"  class="top-header-orientation"> <span id="left-header-id-span"> < </span></div>-->
+        <!--        <div id="top-header-id" class="top-header-orientation">  <span id="top-header-id-span"> ^ </span> </div>-->
+        <!--        <div id="right-header-id" class="top-header-orientation">  <span id="right-header-id-span"> > </span>   </div>-->
+        <!--        <div id="bottom-header-id" class="top-header-orientation">  <span id="bottom-header-id-span"> ^ </span>  </div>-->
+
+        <!--    </div>-->
+    </div>
+
+
+    <div id="destination-container">
+
+        <div id='pane' class="pane-full-screen main-section-wrapper-class">
+            <div class='resizable'>
+                <div class='resizers'>
+                    <div class='resizer top-left'></div>
+                    <div class='resizer top-right'></div>
+                    <div class='resizer bottom-left'></div>
+                    <div class='resizer bottom-right'></div>
+
+                    <div id="component-factory-title">
+                        <!--                <div  class="file-name ui icon label" file-key="">qwer</div>-->
+
+
+
+                    </div>
+                    <div id='components-search-container'>
+                        <div id='quick-notes-backdrop'></div>
+                        <div id="left-and-middle-section" class=" sidenav-button-class-display all-ele-class-for-background">
+                            <div id='middle-section'>
+                                <div id='search-container-section'>
+                                    <div class="search-container">
+                                        <div class="ui icon input" style="
+                                        left: 36px;
+                                        top: 3px;
+                                        width: 80%;
+                                    ">
+
+
+                                            <input class="prompt" id="search-box" type="text" style="background-color: #e9f3ed !important;" placeholder="Search..." autocomplete="off">
+                                            <div class="search-box-icons" style="position: absolute;display: grid;grid-template-columns: 1fr 1fr;top: 3px;right: 1px;">
+                                                <i class="ui close icon" style="display: block;"></i>
+                                                <i class="search icon"></i>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div id='chat-file-icon-section' style="
+									       position: absolute;
+                                            right: 4px;
+                                            top: 10px;">
+                                        <div id="create-new-file" class="dropdown_1" style="
+									    display:block;" title="Create New File">
+                                            <button id="add-new-file-in-file-factory">+</button>
+                                        </div>
+                                    </div>
+
+
+                                    <div id="search-results-close-button"> X</div>
+
+                                    <div class='search-results'>
+
+
+                                        <div id="file-middle-section">
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="file-factory-split-bar">
+
+                        </div>
+                        <div id="sidenav-button-id1" class="sidenav-button-class  file-factory-split-bar">
+                            <span class="sidenav-button-content-class">
+                                <>
+                            </span>
+                        </div>
+                        <div id='right-side-components' class="right-side-components-split-screen all-ele-class-for-background">
+                            <div id='right-side-components-container'>
+                                <div id="right-side-section">
+                                    <div class="ui action input">
+                                        <input id="youtube-video-link" value="https://youtu.be/zIwLWfaAg-8" type="text" placeholder="youtube url...">
+
+                                    </div>
+                                    <div class="blue ui buttons icon">
+                                        <svg class="video-link-copy-button  OUGEr QdAdhf" width="22px" height="22px" viewBox="0 0 24 24" fill="currentColor" focusable="false" style="
+                                                        color: #b4a0ce;
+                                                        margin: 4px;
+                                                        ">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z">
+                                            </path>
+                                        </svg>
+                                        <button class="ui button" style="
+                                                    padding-left: 17px;
+                                                    padding-top: 7px;
+                                                    background: #b4a0ce;
+                                                    height: 30px;
+                                                ">Paste
+                                        </button>
+                                        <button id="stream-youtube-video" class="ui button active">Stream
+                                        </button>
+
+                                    </div>
+
+                                </div>
+                                <div id="video-stream-in-file-factory" class="right-side-components-in-file-factory" style="width:100%;height:100%;">
+
+                                </div>
+
+                                <div id="quick-notes-in-file-factory" class="right-side-components-in-file-factory text-editor-in-right-side-components" style="">
+                                    <div class="file-name ui icon label" file-key="153f8641-524c-4bef-a6e8-c940963aa3cd" style="
+                                        position: absolute;
+                                        bottom: 2px;
+                                        width: 100%;
+                                        color: #1279c6;
+                                        font-size: 14px;
+                                        font-weight: 500;
+                                ">Rent Receipts
+                                    </div>
+                                    <div class="video-stream-back-to-file-list" style="position: absolute;
+                                        left: 25px;
+                                        margin-top: 7px;
+                                        cursor: pointer;
+                                        font-size: 20px;
+                                         ">
+
+
+                                        <i class="arrow alternate circle left icon middle" style="
+                                            display: block;
+                                        "></i>
+                                    </div>
+                                    <div class="quick-notes-top-section">
+
+                                        <!--                                        <div class="options">-->
+                                        <!--                                            <input type="number" class="all-ele-class-for-background" onchange="transform('fontSize', this.value)" value="3" max="7" min="1">-->
+                                        <!--                                            <button class="quick-file-editor-button" onclick="transform('bold', null)">-->
+                                        <!--                                            <svg class="svg-inline&#45;&#45;fa fa-bold fa-w-12" aria-hidden="true"-->
+                                        <!--                                                 data-prefix="fas" data-icon="bold" role="img"-->
+                                        <!--                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"-->
+                                        <!--                                                 data-fa-i2svg="">-->
+                                        <!--                                                <path fill="currentColor"-->
+                                        <!--                                                      d="M304.793 243.891c33.639-18.537 53.657-54.16 53.657-95.693 0-48.236-26.25-87.626-68.626-104.179C265.138 34.01 240.849 32 209.661 32H24c-8.837 0-16 7.163-16 16v33.049c0 8.837 7.163 16 16 16h33.113v318.53H24c-8.837 0-16 7.163-16 16V464c0 8.837 7.163 16 16 16h195.69c24.203 0 44.834-1.289 66.866-7.584C337.52 457.193 376 410.647 376 350.014c0-52.168-26.573-91.684-71.207-106.123zM142.217 100.809h67.444c16.294 0 27.536 2.019 37.525 6.717 15.828 8.479 24.906 26.502 24.906 49.446 0 35.029-20.32 56.79-53.029 56.79h-76.846V100.809zm112.642 305.475c-10.14 4.056-22.677 4.907-31.409 4.907h-81.233V281.943h84.367c39.645 0 63.057 25.38 63.057 63.057.001 28.425-13.66 52.483-34.782 61.284z"></path>-->
+                                        <!--                                            </svg>&lt;!&ndash; <i class="fas fa-bold"></i> &ndash;&gt;-->
+                                        <!--                                        </button>-->
+                                        <!--                                            <button class="quick-file-editor-button" onclick="transform('italic', null)">-->
+                                        <!--                                            <svg class="svg-inline&#45;&#45;fa fa-italic fa-w-10" aria-hidden="true"-->
+                                        <!--                                                 data-prefix="fas" data-icon="italic" role="img"-->
+                                        <!--                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"-->
+                                        <!--                                                 data-fa-i2svg="">-->
+                                        <!--                                                <path fill="currentColor"-->
+                                        <!--                                                      d="M204.758 416h-33.849l62.092-320h40.725a16 16 0 0 0 15.704-12.937l6.242-32C297.599 41.184 290.034 32 279.968 32H120.235a16 16 0 0 0-15.704 12.937l-6.242 32C96.362 86.816 103.927 96 113.993 96h33.846l-62.09 320H46.278a16 16 0 0 0-15.704 12.935l-6.245 32C22.402 470.815 29.967 480 40.034 480h158.479a16 16 0 0 0 15.704-12.935l6.245-32c1.927-9.88-5.638-19.065-15.704-19.065z"></path>-->
+                                        <!--                                            </svg>&lt;!&ndash; <i class="fas fa-italic"></i> &ndash;&gt;-->
+                                        <!--                                        </button>-->
+                                        <!--                                            <button class="quick-file-editor-button" onclick="transform('strikeThrough', null)">-->
+                                        <!--                                            <svg class="svg-inline&#45;&#45;fa fa-strikethrough fa-w-16" aria-hidden="true"-->
+                                        <!--                                                 data-prefix="fas" data-icon="strikethrough" role="img"-->
+                                        <!--                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"-->
+                                        <!--                                                 data-fa-i2svg="">-->
+                                        <!--                                                <path fill="currentColor"-->
+                                        <!--                                                      d="M496 288H16c-8.837 0-16-7.163-16-16v-32c0-8.837 7.163-16 16-16h480c8.837 0 16 7.163 16 16v32c0 8.837-7.163 16-16 16zm-214.666 16c27.258 12.937 46.524 28.683 46.524 56.243 0 33.108-28.977 53.676-75.621 53.676-32.325 0-76.874-12.08-76.874-44.271V368c0-8.837-7.164-16-16-16H113.75c-8.836 0-16 7.163-16 16v19.204c0 66.845 77.717 101.82 154.487 101.82 88.578 0 162.013-45.438 162.013-134.424 0-19.815-3.618-36.417-10.143-50.6H281.334zm-30.952-96c-32.422-13.505-56.836-28.946-56.836-59.683 0-33.92 30.901-47.406 64.962-47.406 42.647 0 64.962 16.593 64.962 32.985V136c0 8.837 7.164 16 16 16h45.613c8.836 0 16-7.163 16-16v-30.318c0-52.438-71.725-79.875-142.575-79.875-85.203 0-150.726 40.972-150.726 125.646 0 22.71 4.665 41.176 12.777 56.547h129.823z"></path>-->
+                                        <!--                                            </svg>&lt;!&ndash; <i class="fas fa-strikethrough"></i> &ndash;&gt;-->
+                                        <!--                                        </button>-->
+                                        <!--                                            <button class="quick-file-editor-button" onclick="transform('underline', null)">-->
+                                        <!--                                            <svg class="svg-inline&#45;&#45;fa fa-underline fa-w-14" aria-hidden="true"-->
+                                        <!--                                                 data-prefix="fas" data-icon="underline" role="img"-->
+                                        <!--                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"-->
+                                        <!--                                                 data-fa-i2svg="">-->
+                                        <!--                                                <path fill="currentColor"-->
+                                        <!--                                                      d="M224.264 388.24c-91.669 0-156.603-51.165-156.603-151.392V64H39.37c-8.837 0-16-7.163-16-16V16c0-8.837 7.163-16 16-16h137.39c8.837 0 16 7.163 16 16v32c0 8.837-7.163 16-16 16h-28.813v172.848c0 53.699 28.314 79.444 76.317 79.444 46.966 0 75.796-25.434 75.796-79.965V64h-28.291c-8.837 0-16-7.163-16-16V16c0-8.837 7.163-16 16-16h136.868c8.837 0 16 7.163 16 16v32c0 8.837-7.163 16-16 16h-28.291v172.848c0 99.405-64.881 151.392-156.082 151.392zM16 448h416c8.837 0 16 7.163 16 16v32c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16v-32c0-8.837 7.163-16 16-16z"></path>-->
+                                        <!--                                            </svg>&lt;!&ndash; <i class="fas fa-underline"></i> &ndash;&gt;-->
+                                        <!--                                        </button>-->
+
+                                        <!--                                            <button class="quick-file-editor-button" onclick="transform('justifyLeft', null)">-->
+                                        <!--                                            <svg class="svg-inline&#45;&#45;fa fa-align-left fa-w-14" aria-hidden="true"-->
+                                        <!--                                                 data-prefix="fas" data-icon="align-left" role="img"-->
+                                        <!--                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"-->
+                                        <!--                                                 data-fa-i2svg="">-->
+                                        <!--                                                <path fill="currentColor"-->
+                                        <!--                                                      d="M288 44v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16V44c0-8.837 7.163-16 16-16h256c8.837 0 16 7.163 16 16zM0 172v40c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16zm16 312h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm256-200H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16h256c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16z"></path>-->
+                                        <!--                                            </svg>&lt;!&ndash; <i class="fas fa-align-left"></i> &ndash;&gt;-->
+                                        <!--                                        </button>-->
+                                        <!--                                            <button class="quick-file-editor-button" onclick="transform('justifyCenter', null)">-->
+                                        <!--                                            <svg class="svg-inline&#45;&#45;fa fa-align-center fa-w-14" aria-hidden="true"-->
+                                        <!--                                                 data-prefix="fas" data-icon="align-center" role="img"-->
+                                        <!--                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"-->
+                                        <!--                                                 data-fa-i2svg="">-->
+                                        <!--                                                <path fill="currentColor"-->
+                                        <!--                                                      d="M352 44v40c0 8.837-7.163 16-16 16H112c-8.837 0-16-7.163-16-16V44c0-8.837 7.163-16 16-16h224c8.837 0 16 7.163 16 16zM16 228h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 256h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm320-200H112c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16h224c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16z"></path>-->
+                                        <!--                                            </svg>&lt;!&ndash; <i class="fas fa-align-center"></i> &ndash;&gt;-->
+                                        <!--                                        </button>-->
+                                        <!--                                            <button class="quick-file-editor-button" onclick="transform('justifyRight', null)">-->
+                                        <!--                                            <svg class="svg-inline&#45;&#45;fa fa-align-right fa-w-14" aria-hidden="true"-->
+                                        <!--                                                 data-prefix="fas" data-icon="align-right" role="img"-->
+                                        <!--                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"-->
+                                        <!--                                                 data-fa-i2svg="">-->
+                                        <!--                                                <path fill="currentColor"-->
+                                        <!--                                                      d="M160 84V44c0-8.837 7.163-16 16-16h256c8.837 0 16 7.163 16 16v40c0 8.837-7.163 16-16 16H176c-8.837 0-16-7.163-16-16zM16 228h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 256h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm160-128h256c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H176c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>-->
+                                        <!--                                            </svg>&lt;!&ndash; <i class="fas fa-align-right"></i> &ndash;&gt;-->
+                                        <!--                                        </button>-->
+
+                                        <!--                                            <button class="quick-file-editor-button" onclick="transform('insertOrderedList', null)">-->
+                                        <!--                                            <svg class="svg-inline&#45;&#45;fa fa-list-ol fa-w-16" aria-hidden="true"-->
+                                        <!--                                                 data-prefix="fas" data-icon="list-ol" role="img"-->
+                                        <!--                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"-->
+                                        <!--                                                 data-fa-i2svg="">-->
+                                        <!--                                                <path fill="currentColor"-->
+                                        <!--                                                      d="M3.263 139.527c0-7.477 3.917-11.572 11.573-11.572h15.131V88.078c0-5.163.534-10.503.534-10.503h-.356s-1.779 2.67-2.848 3.738c-4.451 4.273-10.504 4.451-15.666-1.068l-5.518-6.231c-5.342-5.341-4.984-11.216.534-16.379l21.72-19.938C32.815 33.602 36.732 32 42.785 32H54.89c7.656 0 11.749 3.916 11.749 11.572v84.384h15.488c7.655 0 11.572 4.094 11.572 11.572v8.901c0 7.477-3.917 11.572-11.572 11.572H14.836c-7.656 0-11.573-4.095-11.573-11.572v-8.902zM2.211 304.591c0-47.278 50.955-56.383 50.955-69.165 0-7.18-5.954-8.755-9.28-8.755-3.153 0-6.479 1.051-9.455 3.852-5.079 4.903-10.507 7.004-16.111 2.451l-8.579-6.829c-5.779-4.553-7.18-9.805-2.803-15.409C13.592 201.981 26.025 192 47.387 192c19.437 0 44.476 10.506 44.476 39.573 0 38.347-46.753 46.402-48.679 56.909h39.049c7.529 0 11.557 4.027 11.557 11.382v8.755c0 7.354-4.028 11.382-11.557 11.382h-67.94c-7.005 0-12.083-4.028-12.083-11.382v-4.028zM5.654 454.61l5.603-9.28c3.853-6.654 9.105-7.004 15.584-3.152 4.903 2.101 9.63 3.152 14.359 3.152 10.155 0 14.358-3.502 14.358-8.23 0-6.654-5.604-9.106-15.934-9.106h-4.728c-5.954 0-9.28-2.101-12.258-7.88l-1.05-1.926c-2.451-4.728-1.226-9.806 2.801-14.884l5.604-7.004c6.829-8.405 12.257-13.483 12.257-13.483v-.35s-4.203 1.051-12.608 1.051H16.685c-7.53 0-11.383-4.028-11.383-11.382v-8.755c0-7.53 3.853-11.382 11.383-11.382h58.484c7.529 0 11.382 4.027 11.382 11.382v3.327c0 5.778-1.401 9.806-5.079 14.183l-17.509 20.137c19.611 5.078 28.716 20.487 28.716 34.845 0 21.363-14.358 44.126-48.503 44.126-16.636 0-28.192-4.728-35.896-9.455-5.779-4.202-6.304-9.805-2.626-15.934zM144 132h352c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>-->
+                                        <!--                                            </svg>&lt;!&ndash; <i class="fas fa-list-ol"></i> &ndash;&gt;-->
+                                        <!--                                        </button>-->
+                                        <!--                                            <button class="quick-file-editor-button" onclick="transform('insertUnorderedList', null)">-->
+                                        <!--                                            <svg class="svg-inline&#45;&#45;fa fa-list-ul fa-w-16" aria-hidden="true"-->
+                                        <!--                                                 data-prefix="fas" data-icon="list-ul" role="img"-->
+                                        <!--                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"-->
+                                        <!--                                                 data-fa-i2svg="">-->
+                                        <!--                                                <path fill="currentColor"-->
+                                        <!--                                                      d="M96 96c0 26.51-21.49 48-48 48S0 122.51 0 96s21.49-48 48-48 48 21.49 48 48zM48 208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm0 160c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm96-236h352c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>-->
+                                        <!--                                            </svg>&lt;!&ndash; <i class="fas fa-list-ul"></i> &ndash;&gt;-->
+                                        <!--                                        </button>-->
+
+                                        <!--                                            <select class="quick-file-editor-button" onchange="transform('fontName', this.value)">-->
+                                        <!--                                            <option disabled="" default="">Font</option>-->
+                                        <!--                                            <option value="Times New Roman">Times</option>-->
+                                        <!--                                            <option value="Arial">Arial</option>-->
+                                        <!--                                            <option value="Courier New">Courier New</option>-->
+                                        <!--                                            <option value="Tahoma">Tahoma</option>-->
+                                        <!--                                            <option value="Arial">Verdana</option>-->
+                                        <!--                                        </select>-->
+
+
+                                        <!--                                        </div>-->
+                                        <!--                                        <img id="quick-notes-setting" class="width-height-20px" src="https://cdn1.iconfinder.com/data/icons/modern-universal/32/icon-16-512.png">-->
+                                        <i id="video-notes-help" class="video-notes-help icon help circle video-notes-help" title="Help"></i>
+
+                                        <i class="quick-file-rename icon edit" title="Rename" alt="Rename icon" lazy="loaded"></i>
+                                        <i class="quick-file-delete icon trash" title="Delete" alt="Delete Bin icon" lazy="loaded"></i>
+                                        <i class="quick-file-fav icon star" title="Mark Favourite" alt="Star icon" loading="lazy"></i>
+                                        <i class="quick-file-detail info circle icon" title="Info" alt="Info icon" loading="lazy"></i>
+
+                                    </div>
+
+                                    <div class="wrapper">
+
+                                        <input id="quick-file-title" class="all-ele-class-for-background" type="text" contenteditable="true" placeholder="Title">
+                                        <textarea name="editor" id="quick-file-editor"></textarea>
+                                        <script>
+                                            function transform(option, argument) {
+                                                editor.document.execCommand(option, false, argument);
+                                            }
+                                        </script>
+                                    </div>
+
+
+                                    <script defer="" src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+                                    <script defer="" src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='corner'></div>
+                    </div>
+                </div>quick-file-editor
+            </div>
+        </div>
+    </div>
+
+
+    <div class="context">
+        <div class="context-item both-file-and-folder">
+            <div data-option="Rename" class="inner-item">
+                <i class="edit icon"></i> Rename
+            </div>
+        </div>
+        <div class="context-item only-folder">
+            <div data-option="New File" class="inner-item">
+                <i class="file outline icon" title="New File">
+                    <i class="plus circle icon"></i>
+                </i>
+                New File
+            </div>
+
+        </div>
+        <div class="context-item  only-folder">
+            <div data-option="New Folder" class="inner-item">
+                <i class="folder outline icon" title="New Folder">
+                    <i class="plus circle icon"></i>
+                </i>
+                New Folder
+            </div>
+        </div>
+
+        <div class="context-item  only-file">
+            <div data-option="Cut" class="inner-item">
+                <i class="cut icon"></i> Cut
+            </div>
+        </div>
+        <div class="context-item only-file">
+            <div data-option="Copy" class="inner-item">
+                <i class="copy icon"></i> Copy
+            </div>
+        </div>
+
+        <div class="context-item only-folder">
+            <div data-option="Paste" class="inner-item">
+                <i class="paste icon"></i> Paste
+            </div>
+        </div>
+        <div class="context-item only-trash">
+            <div data-option="Restore" class="inner-item">
+                <i class="window restore icon"></i> Restore
+            </div>
+        </div>
+        <div class="context-item only-trash">
+            <div data-option="Delete from Trash" class="inner-item">
+                <i class="trash icon">
+                    <i class="minus circle icon"></i>
+                </i>
+                Delete from Trash
+            </div>
+        </div>
+        <div class="context-item only-file" style="display: block;">
+            <div data-option="Starred" class="inner-item" style="
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+        ">
+                <i class="ui  star icon"></i>Starred
+
+                <input type="checkbox" class="tree-note-star-input starr-checkbox" style="
+            margin-top: 10px;
+        ">
+            </div>
+        </div>
+        <div class="context-item both-file-and-folder">
+            <div data-option="Move To Trash" class="inner-item">
+                <i class="trash icon"></i> Move To Trash
+            </div>
+        </div>
+        <div class="context-item both-file-and-folder">
+            <div data-option="Details" class="inner-item">
+                <i class="info circle icon"></i> Details
+            </div>
+        </div>
+        <div class="context-item only-trash">
+            <div data-option="Details" class="inner-item">
+                <i class="info circle icon"></i> Details
+            </div>
+        </div>
+    </div>
+
+
+    <div id="main-section-wrapper" style="overflow-y:hidden;display:none">
+        <div class='main-section-wrapper-class' id="main-sections" style="overflow-y:hidden">
+
+            <div id='navigation-bar' class="split__left sidenav-button-class-display">
+                <a href="javascript:void(0)" id="closebtn">×</a>
+                <!--		<div id='sidenav-button-id' class='sidenav-button-class'>-->
+                <!--			<span class='sidenav-button-content-class'>>></span></span>-->
+                <!--		</div>-->
+
+                <div class="sidenav">
+
+                    <!-- begining of semantic-UI tree-note-search box-->
+                    <link rel="stylesheet" href="https://semantic-ui.com/dist/semantic.min.css">
+                    <script src="https://semantic-ui.com/dist/semantic.min.js"></script>
+
+                    <div class="ui container" style="
+                            width: 112% !important;
+                            background: #e9f3ed;
+                            height: 30px !important;
+                            z-index: 1;
+                            margin-left: -5px !important;
+                        ">
+
+                        <div class="ui segment">
+                            <div id="searchInput" class="ui category search" style="
+                        width: 85%;
+                    ">
+                                <div class="ui icon input">
+
+
+                                    <input class="prompt" type="text" style="background-color: #e9f3ed;" placeholder="Search Tree..." autocomplete="off">
+                                    <div class="search-box-icons" style="    position: absolute;
+                                            display: grid;
+                                            grid-template-columns: 1fr 1fr;
+                                            top: 4px;
+                                            right: 1px;
+                                            width: 50px;">
+                                        <i class="ui close icon"></i>
+                                        <i class="search icon"></i>
+                                    </div>
+
+                                </div>
+                                <div class="results transition hidden">
+                                    <div class="category">
+                                        <div class="name">Category 1</div>
+                                        <div class="results transition hidden">
+                                            <a class="result">
+                                                <div class="content">
+                                                    <div class="title">result Title</div>
+                                                    <div class="description">Optional Description</div>
+                                                </div>
+                                            </a>
+                                            <a class="result">
+                                                <div class="content">
+                                                    <div class="title">result Title</div>
+                                                    <div class="description">Optional Description</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="category">
+                                        <div class="name">Category 2</div>
+                                        <div class="results transition hidden">
+                                            <a class="result">
+                                                <div class="content">
+                                                    <div class="title">result Title</div>
+                                                    <div class="description">Optional Description</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <!--                    <div class="action-on-file-folder">-->
+                    <!--                    </div>-->
+
+                    <div id="tree-note-sidenav-tabs" style="position:relative;height:inherit;margin-top: 20px;">
+                        <div class="ui tabular menu">
+                            <div class="item" data-tab="tree">Tree</div>
+                            <div class="item" data-tab="starred">Starred</div>
+                            <div class="item" data-tab="trash">Trash</div>
+                        </div>
+                        <div class="ui tab" data-tab="tree">
+                            <!-- Tab Content !-->
+
+                            <ul id="myUL">
+                            </ul>
+                            <div id="tree-create-root-folder" data-option="Create Root Folder" style="
+                                    background: #4a97cc;
+                                    padding-left: 45%;
+                                    width: 100%;
+                                    bottom: 53px;
+                                    position: absolute;
+                                "><span style="
+                                font-size: 20px;
+                                color: white;
+                            "> + </span></div>
+                        </div>
+                        <div class="ui tab" data-tab="trash">
+                            <!-- Tab Content !-->
+                            <ul class="tree-trash-tab-class folder-correction" style="margin-left: -15px;">
+                            </ul>
+                        </div>
+
+                        <div class="ui tab" data-tab="starred">
+                            <!-- Tab Content !-->
+                            <ul class="tree-starr-tab-class folder-correction" style="margin-left: -15px;">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="sidenav-button-id" class="sidenav-button-class split__bar">
+                <span class="sidenav-button-content-class">
+                    <>
+                </span>
+            </div>
+            <div class="split__bar"></div>
+            <div id="parent-source-code-main-div">
+                <div class="tree-file-tracker" style="
+				        margin-left: 1%;
+                        margin-top: 1px;
+                        display: flex;
+                        justify-content: space-between;
+                        width: 95%;
+                        border: 1px solid #ffffff;
+                        padding-left: 14px;
+			">
+
+                    <div class="ui mini breadcrumb">
+                        <a class="section">Home</a>
+                        <div class="divider"> /</div>
+                        <a class="section">Store</a>
+                        <div class="divider"> /</div>
+                        <div class="active section">T-Shirt</div>
+                    </div>
+                    <div class="tree-main-icon-section" style="
+                            position: relative;
+                            right: 0px;
+                            margin-top: 0px;
+                            width: 100px;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-evenly;
+                    ">
+
+                        <div class="tab-container-setting ui dropdown" style="
+                             width: 25px;
+                            top: 3px;
+                            z-index: 4;
+						">
+                            <div class="text">File</div>
+                            <i class="three-dots" style="
+                                display: block;
+                                height: 10px;
+                                position: absolute;
+                                margin-top: -14px;
+                                color: #1360bb;
+                                font-size: 28px;
+                            ">...</i>
+                            <div class="menu transition left">
+                                <div class="ui left pointing dropdown link item">
+                                    <i class="dropdown icon"></i> Close
+                                    <div class="menu ui left pointing dropdown item">
+                                        <div class="item" close-type="close_the_current_tab">Current Tab</div>
+                                        <div class="item" close-type="close_tabs_to_the_left">Tabs To the Left</div>
+                                        <div class="item" close-type="close_tabs_to_the_right">Tabs To the Right</div>
+                                        <div class="item" close-type="close_all_except_the_current">All Tabs except the current
+                                        </div>
+                                        <div class="item" close-type="all">All</div>
+                                    </div>
+                                </div>
+                                <div class="ui left pointing dropdown link item">
+                                    <i class="dropdown icon"></i> Open
+                                    <div id="project-notes-opened-list" class="menu left transition visible">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <span class="description">
+                                        <input id='tab-check' type="checkbox"
+                                            src="https://img.icons8.com/color/48/000000/suitcase.png" checked>
+                                    </span> Toggle multitab
+                                </div>
+                                <div class="item">
+                                    <span class="description">
+                                        <input id='note-editor-toolbar-check' type="checkbox"
+                                            src="https://img.icons8.com/color/48/000000/suitcase.png" checked>
+                                    </span> Toggle ToolBar
+                                </div>
+
+                                <div class="item" data-option="Rename">
+                                    <i class="edit icon"></i> Rename
+                                </div>
+
+                                <div class="item" data-option="Starred" style="
+                                        display: flex;
+                                        justify-content: space-between;
+                                    ">
+                                    <i class="star icon"></i> Starr It
+                                    <input type="checkbox" class="tree-note-star-input starr-checkbox" style="
+                                        margin-top: 0px;
+                                    ">
+                                </div>
+
+                                <div class="item" data-option="Move To Folder">
+                                    <i class="folder icon"></i> Move To Folder
+                                </div>
+
+                                <div class="item" data-option="Copy To Folder">
+                                    <i class="folder icon"></i> Copy to Folder
+                                </div>
+
+                                <div class="item" data-option="Move To Trash">
+                                    <i class="trash icon"></i> Move To Trash
+                                </div>
+                                <div class="divider"></div>
+                                <div class="item">
+                                    <i class="download icon"></i> Download As...
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="tree-note-details-icon" style="top: 5px;
+                            position: inherit;
+                            ">
+                            <img src="https://cdn1.iconfinder.com/data/icons/basic-ui-elements-color/700/05_info-512.png" alt="Info, information icon - Download on Iconfinder" style="
+                                    width: 20px;
+                                    height: 20px;
+                                    cursor: pointer;
+                                    margin-top: 4px;
+                            " />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id='source-code-main-div' class="split__right">
+
+
+                    <div id='source-code-sub-divs'>
+
+                        <div id="create-new-project-note" data-tooltip="Create a Blank Doc" data-position="top center">
+                            <button id="add-new-file-in-project-notes" class="button" data-tooltip="Create a Blank Doc" data-position="top center">+
+                            </button>
+
+                        </div>
+                        <div id='tab-container'>
+                        </div>
+
+
+                    </div>
+                    <!--		<div id="tabs-container-button-section">-->
+                    <!--				<div id="move-tabs-left" class ='button dropbtn'>-->
+                    <!--					<span class="move-tabs">  &lt;</span>-->
+                    <!--				</div>-->
+                    <!--				<div id="move-tabs-right" class="button dropbtn">-->
+                    <!--					<span class="move-tabs">  >	</span>-->
+                    <!--				</div>-->
+
+                    <!--				<div id='tabs-list-drop-down' class="dropdown">-->
+                    <!--					<button  class="three-vertical-dots button" style="    padding: 6px;-->
+                    <!--						background: none;-->
+                    <!--						outline:none;-->
+                    <!--					">>></button>-->
+                    <!--					<div id="myDropdown" class="dropdown-content">-->
+                    <!--					</div>-->
+                    <!--				</div>-->
+                    <!--		</div>-->
+
+
+                    <!-- Summernote section for  Document editor starts -->
+
+                    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+                    <!--                         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>-->
+                    <!--                        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">-->
+                    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
+
+                    <!--    	<div id="summer-note" style="display:none"> 	</div>-->
+                    <iframe id="summer-note-iframe-id" style="
+				position: absolute;
+				margin-top: 56px;
+				margin-left: 26px;
+				width: 99%;
+				height: 85%;
+				border: none;
+			"></iframe>
+                    <div id="display-tab-setting-message">
+                        <span class="tab-setting-message">No file opened</span>
+                    </div>
+                    <div id="display-tab-setting-backdrop">
+                        <!--                        <img id="edit-tree-note" src="https://cdn1.iconfinder.com/data/icons/modern-universal/32/icon-16-512.png" style="-->
+                        <!--                        width: 40px;-->
+                        <!--                        height: 40px;-->
+                        <!--                        position: fixed;-->
+                        <!--                        bottom: 50px;-->
+                        <!--                        right: 50px;-->
+                        <!--                        cursor: pointer;-->
+                        <!--                    ">-->
+                    </div>
+
+
+                    <!-- codemirror section for  code editpr starts -->
+                    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.css'>
+                    <link href='https://fonts.googleapis.com/css?family=Dosis|Candal' rel='stylesheet' type='text/css'>
+                    <link href='https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css' rel="stylesheet" type="text/css">
+
+                    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/theme/material.css'>
+
+                </div>
+            </div>
+        </div>
+
+        <!--        <div class='main-section-wrapper-class' id="overlay">-->
+        <!--            <div id='hider-for-resize'></div>-->
+        <!--            <div id='result-iframe'>-->
+
+        <!--                &lt;!&ndash; tab-section with contents &ndash;&gt;-->
+
+        <!--                <div class="tabset">-->
+        <!--                    &lt;!&ndash; Tab 1 &ndash;&gt;-->
+        <!--                    <input type="radio" name="tabset" id="tab4" aria-controls="dunkles" checked>-->
+        <!--                    <label for="tab4">Video Stream</label>-->
+
+        <!--                    &lt;!&ndash; Tab 2 &ndash;&gt;-->
+        <!--                    <input type="radio" name="tabset" id="tab1" aria-controls="videos-tab-section">-->
+        <!--                    <label for="tab1">Download Youtube Videos</label>-->
+
+
+        <!--                    &lt;!&ndash; tab-pannels begins &ndash;&gt;-->
+        <!--                    <div class="tab-panels">-->
+
+        <!--                        <section id="dunkles" class="tab-panel">-->
+
+        <!--                            <div id="local-video-stream-section>" style="-->
+        <!--								margin-left: 30px;-->
+        <!--							">-->
+        <!--                                <input type="file" id='local-stream' class="button" accept="video/*"/>-->
+        <!--                                <label for="local-stream" class="button">stream local video</label>-->
+        <!--                                <div id="message"></div>-->
+        <!--                                <video id="local-stream-video-node" controls autoplay></video>-->
+
+
+        <!--                            </div>-->
+
+
+        <!--                            &lt;!&ndash;					<div id="right-side-section" style="&ndash;&gt;-->
+        <!--                            &lt;!&ndash;						    left: 450px;&ndash;&gt;-->
+        <!--                            &lt;!&ndash;							top: 273px;&ndash;&gt;-->
+        <!--                            &lt;!&ndash;							position: absolute;&ndash;&gt;-->
+        <!--                            &lt;!&ndash;											">&ndash;&gt;-->
+        <!--                            &lt;!&ndash;						<input type="text" id="youtube-video-link" title="Right click the youtube video and copy embed code and pate here" placeholder="Right click the youtube video and copy embed code and pate here" style="&ndash;&gt;-->
+        <!--                            &lt;!&ndash;														    padding: 4px 40px;&ndash;&gt;-->
+        <!--                            &lt;!&ndash;															margin: 7px 0;&ndash;&gt;-->
+        <!--                            &lt;!&ndash;															box-sizing: border-box;&ndash;&gt;-->
+        <!--                            &lt;!&ndash;															position: absolute;&ndash;&gt;-->
+        <!--                            &lt;!&ndash;															left: 187px;&ndash;&gt;-->
+        <!--                            &lt;!&ndash;															top: -174px;&ndash;&gt;-->
+        <!--                            &lt;!&ndash;												">&ndash;&gt;-->
+        <!--                            &lt;!&ndash;						<button id="stream-youtube-video" class="button" style="      position: absolute;&ndash;&gt;-->
+        <!--                            &lt;!&ndash;																					left: 445px;&ndash;&gt;-->
+        <!--                            &lt;!&ndash;																					top: -166px;">&ndash;&gt;-->
+        <!--                            &lt;!&ndash;							stream Youtube video</button>&ndash;&gt;-->
+
+        <!--                            &lt;!&ndash;					</div>&ndash;&gt;-->
+
+
+        <!--                        </section>-->
+
+        <!--                        <section id="videos-tab-section" class="tab-panel">-->
+        <!--                            <h2></h2>-->
+
+        <!--                            <div id="video-download-section>" style="-->
+        <!--								margin-left: 30px;-->
+        <!--							">-->
+        <!--                                <input type="text" id="video-link" placeholder="video-link" style="-->
+        <!--								padding: 4px 40px;-->
+        <!--								margin: 8px 0;-->
+        <!--								box-sizing: border-box;-->
+        <!--							">-->
+        <!--                                <input type="text" id="video-name" placeholder="video-name" style="-->
+        <!--								padding: 4px 40px;-->
+        <!--								margin: 8px 0;-->
+        <!--								box-sizing: border-box;-->
+        <!--							">-->
+        <!--                                <button id="download-video-button" class="button">download</button>-->
+        <!--                            </div>-->
+        <!--                            <div id='video-section'>-->
+        <!--                                <video width="400" controls>-->
+        <!--                                </video>-->
+        <!--                            </div>-->
+
+        <!--                        </section>-->
+
+
+        <!--                    </div>-->
+
+        <!--                </div>-->
+
+
+        <!--            </div>-->
+
+
+        <!--        </div>-->
+
+        <!--        <div class='main-section-wrapper-class' id="html-renderer-section">-->
+
+
+        <!--            <div id="component-tabs">-->
+        <!--                &lt;!&ndash;			<button class="create-component create-component button tab-options-button" title="calculator">&ndash;&gt;-->
+        <!--                &lt;!&ndash;				Calculator&ndash;&gt;-->
+        <!--                &lt;!&ndash;			</button>&ndash;&gt;-->
+        <!--                &lt;!&ndash;			<button class="create-component create-component button tab-options-button" title="slideshow">&ndash;&gt;-->
+        <!--                &lt;!&ndash;				slideshow&ndash;&gt;-->
+        <!--                &lt;!&ndash;			</button>&ndash;&gt;-->
+        <!--                &lt;!&ndash;			<button class="create-component create-component button tab-options-button" title="markup_editor">&ndash;&gt;-->
+        <!--                &lt;!&ndash;				markup_editor&ndash;&gt;-->
+        <!--                &lt;!&ndash;			</button>&ndash;&gt;-->
+
+        <!--            </div>-->
+
+        <!--            <div id="create-component-section">-->
+
+        <!--                <div id="create-component-form" style="display: none;">-->
+        <!--                    <input type="text" id="create-component-text-box" name="firstname" class="form-text-box"-->
+        <!--                           placeholder="Create Component">-->
+        <!--                    <button id="create-component-submit-btn" class="button">create</button>-->
+        <!--                    <button id="close-create-component-form" class="button" style="-->
+        <!--				"> X-->
+        <!--                    </button>-->
+        <!--                </div>-->
+
+        <!--                <div id="create-component-add-btn" class="dropdown_1">-->
+        <!--                    <button class="button dropbtn">+</button>-->
+        <!--                    <div id="myDropdown-add-component" class="dropdown-content">-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+
+
+        <!--        </div>-->
+
+
+    </div>
+
+
+    <!-- dialog content starts here-->
+    <div id="modal-id" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2></h2>
+                <button type="button" class="close-modal close" style="outline: none;">×</button>
+            </div>
+            <div class="modal-body">
+
+                <!--		create new tree file dialog content-->
+                <div id='new-project-file-create-form' class="inner-item-form">
+                    <input id="new-project-note-name" type="text" />
+                </div>
+
+                <!--		create new quick file dialog content -->
+                <div id="create-new-quick-file-form" class="inner-item-form">
+                    <input type="text" id="create-file-text-box" class="form-text-box" placeholder="Create file">
+                </div>
+
+                <div id="rename-tree-file-form" class="inner-item-form">
+                    <input type="text" id="rename-tree-file-text-box" class="form-text-box" placeholder="Create file">
+                </div>
+
+                <div id="confirm-delete-all-files-in-folder" class="inner-item-form">
+                    <span> Proceed moving all the files in the current folder to Trash?</span>
+                </div>
+
+                <div id="video-notes-help-dialog" class="inner-item-form">
+                    <div class="video-notes-help-dialog">
+                    </div>
+                </div>
+
+
+                <div id="folder-clone-section" class="folder-correction">
+                </div>
+                <div id="file-move" class="folder-correction">
+                </div>
+                <div id="file-copy" class="folder-correction">
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <!--      <h3>Modal Footer</h3>-->
+                <button class="ui button primary dialog-button" data-value="create">create</button>
+                <!--                <button class="ui button" data-value="move-tree-file">Move Here</button>-->
+                <!--                <button class="ui button" data-value="copy-tree-file">Copy here</button>-->
+                <!--                <button class="ui button" data-value="proceed-renaming">Proceed Renaming</button>-->
+                <button class="ui button active close-modal">cancel</button>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--notification dialog -->
+    <div id="notification" class="ui cards">
+
+        <div class="card" style="
+    color: white;
+      z-index: 1111;
+    position: fixed;
+    bottom: 10px;
+    left: 60px;
+">
+            <div class="content">
+                <i class="right floated close icon"></i>
+                <div class="header"></div>
+
+                <div class="meta"></div>
+                <div class="description" style="
+    color: rgb(255 255 255);
+">File Saved Successfully
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="right-side-panel">
+        <div class="details-section"></div>
+    </div>
+    </div>
+
+
+</body>
+
+
+<script type="module" src="../static/js/main_1.js"></script>
+
+<script type='text/javascript'>
+    $(document).ready(function() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+    });
+</script>
+
+</html>

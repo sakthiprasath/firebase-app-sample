@@ -1,0 +1,9 @@
+@charset "ISO-8859-1";
+@media only screen and (min-width: 1200px)
+.ui.container {
+    width: 20%;
+    margin-left: 6px!important;
+    background: #ffffff;
+    height: 50px;
+    margin-top: 0px;
+}

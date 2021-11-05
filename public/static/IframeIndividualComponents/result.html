@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<title>CodePen - Code Challenge 1: UI Card A</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<style>
+      .page {
+  align-items: center;
+  background: radial-gradient(#000, #222);
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  background: linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.075));
+  border: 1px solid #333;
+  font: 400 12px/1em sans-serif;
+  height: 28em;
+  margin: 2em;
+  padding: 2em;
+  -webkit-perspective: 75em;
+          perspective: 75em;
+  width: 20em;
+}
+.card * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.card:nth-child(1) > .card-inner > .card-front {
+  background: linear-gradient(-8deg, #222, #000 5em, rgba(255, 0, 0, 0) 5em, rgba(255, 0, 0, 0)) no-repeat, url(https://armchairmogul.files.wordpress.com/2011/07/supes.jpg) center/cover no-repeat;
+}
+.card:nth-child(2) > .card-inner > .card-front {
+  background: linear-gradient(-8deg, #222, #000 5em, rgba(255, 0, 0, 0) 5em, rgba(255, 0, 0, 0)) no-repeat, url(https://imgix.ranker.com/user_node_img/42/822905/original/david-finch-writers-photo-u4?w=650&q=50&fm=pjpg&fit=crop&crop=faces) center/cover no-repeat;
+}
+.card:nth-child(3) > .card-inner > .card-front {
+  background: linear-gradient(-8deg, #222, #000 5em, rgba(255, 0, 0, 0) 5em, rgba(255, 0, 0, 0)) no-repeat, url(https://cdn1.thr.com/sites/default/files/imagecache/NFE_portrait/2018/08/wonder_woman_58_-_publicity_-_p_2018.jpg) center/cover no-repeat;
+}
+.card:nth-child(4) > .card-inner > .card-front {
+  background: linear-gradient(-8deg, #222, #000 5em, rgba(255, 0, 0, 0) 5em, rgba(255, 0, 0, 0)) no-repeat, url(https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/272820/381201/jul180644__14403.1537997529.jpg?c=2&imbypass=on) center/cover no-repeat;
+}
+.card:nth-child(5) > .card-inner > .card-front {
+  background: linear-gradient(-8deg, #222, #000 5em, rgba(255, 0, 0, 0) 5em, rgba(255, 0, 0, 0)) no-repeat, url(https://i.pinimg.com/originals/a9/52/58/a9525813f9beddc4a1818d87b8d4c963.jpg) center/cover no-repeat;
+}
+.card:nth-child(6) > .card-inner > .card-front {
+  background: linear-gradient(-8deg, #222, #000 5em, rgba(255, 0, 0, 0) 5em, rgba(255, 0, 0, 0)) no-repeat, url(https://i.pinimg.com/originals/a2/78/12/a2781277d54f3fd21f7194860bf708be.jpg) center/cover no-repeat;
+}
+.card:nth-child(7) > .card-inner > .card-front {
+  background: linear-gradient(-8deg, #222, #000 5em, rgba(255, 0, 0, 0) 5em, rgba(255, 0, 0, 0)) no-repeat, url(https://i.pinimg.com/originals/6e/7c/48/6e7c481f7750f3f285ff3f58b87dd686.jpg) center/cover no-repeat;
+}
+.card:nth-child(1) > .card-inner > .card-back {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/159363/NicePng_dc-comics-logo-png_832568.png) 0.75em 0.75em/20% no-repeat, linear-gradient(rgba(1, 121, 239, 0), rgba(1, 121, 239, 0) 23.25em, rgba(255, 255, 255, 0.85) 23.25em, rgba(255, 255, 255, 0.85)) no-repeat, linear-gradient(-90deg, #0179ef 5em, rgba(1, 121, 239, 0)) no-repeat, url(https://armchairmogul.files.wordpress.com/2011/07/supes.jpg) center/cover no-repeat;
+}
+.card:nth-child(2) > .card-inner > .card-back {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/159363/NicePng_dc-comics-logo-png_832568.png) 0.75em 0.75em/20% no-repeat, linear-gradient(rgba(1, 121, 239, 0), rgba(1, 121, 239, 0) 23.25em, rgba(255, 255, 255, 0.85) 23.25em, rgba(255, 255, 255, 0.85)) no-repeat, linear-gradient(-90deg, #0179ef 5em, rgba(1, 121, 239, 0)) no-repeat, url(https://imgix.ranker.com/user_node_img/42/822905/original/david-finch-writers-photo-u4?w=650&q=50&fm=pjpg&fit=crop&crop=faces) center/cover no-repeat;
+}
+.card:nth-child(3) > .card-inner > .card-back {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/159363/NicePng_dc-comics-logo-png_832568.png) 0.75em 0.75em/20% no-repeat, linear-gradient(rgba(1, 121, 239, 0), rgba(1, 121, 239, 0) 23.25em, rgba(255, 255, 255, 0.85) 23.25em, rgba(255, 255, 255, 0.85)) no-repeat, linear-gradient(-90deg, #0179ef 5em, rgba(1, 121, 239, 0)) no-repeat, url(https://cdn1.thr.com/sites/default/files/imagecache/NFE_portrait/2018/08/wonder_woman_58_-_publicity_-_p_2018.jpg) center/cover no-repeat;
+}
+.card:nth-child(4) > .card-inner > .card-back {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/159363/NicePng_dc-comics-logo-png_832568.png) 0.75em 0.75em/20% no-repeat, linear-gradient(rgba(1, 121, 239, 0), rgba(1, 121, 239, 0) 23.25em, rgba(255, 255, 255, 0.85) 23.25em, rgba(255, 255, 255, 0.85)) no-repeat, linear-gradient(-90deg, #0179ef 5em, rgba(1, 121, 239, 0)) no-repeat, url(https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/272820/381201/jul180644__14403.1537997529.jpg?c=2&imbypass=on) center/cover no-repeat;
+}
+.card:nth-child(5) > .card-inner > .card-back {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/159363/NicePng_dc-comics-logo-png_832568.png) 0.75em 0.75em/20% no-repeat, linear-gradient(rgba(1, 121, 239, 0), rgba(1, 121, 239, 0) 23.25em, rgba(255, 255, 255, 0.85) 23.25em, rgba(255, 255, 255, 0.85)) no-repeat, linear-gradient(-90deg, #0179ef 5em, rgba(1, 121, 239, 0)) no-repeat, url(https://i.pinimg.com/originals/a9/52/58/a9525813f9beddc4a1818d87b8d4c963.jpg) center/cover no-repeat;
+}
+.card:nth-child(6) > .card-inner > .card-back {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/159363/NicePng_dc-comics-logo-png_832568.png) 0.75em 0.75em/20% no-repeat, linear-gradient(rgba(1, 121, 239, 0), rgba(1, 121, 239, 0) 23.25em, rgba(255, 255, 255, 0.85) 23.25em, rgba(255, 255, 255, 0.85)) no-repeat, linear-gradient(-90deg, #0179ef 5em, rgba(1, 121, 239, 0)) no-repeat, url(https://i.pinimg.com/originals/a2/78/12/a2781277d54f3fd21f7194860bf708be.jpg) center/cover no-repeat;
+}
+.card:nth-child(7) > .card-inner > .card-back {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/159363/NicePng_dc-comics-logo-png_832568.png) 0.75em 0.75em/20% no-repeat, linear-gradient(rgba(1, 121, 239, 0), rgba(1, 121, 239, 0) 23.25em, rgba(255, 255, 255, 0.85) 23.25em, rgba(255, 255, 255, 0.85)) no-repeat, linear-gradient(-90deg, #0179ef 5em, rgba(1, 121, 239, 0)) no-repeat, url(https://i.pinimg.com/originals/6e/7c/48/6e7c481f7750f3f285ff3f58b87dd686.jpg) center/cover no-repeat;
+}
+.card-inner {
+  height: 100%;
+  max-width: 20em;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  transition: transform 0.8s, -webkit-transform 0.8s;
+  width: 100%;
+}
+.card:hover .card-inner {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+.card-front, .card-back {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  display: grid;
+  height: 100%;
+  max-width: 20em;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+.card-front {
+  background: linear-gradient(-8deg, #333, #000 5em, rgba(255, 0, 0, 0) 5em, rgba(255, 0, 0, 0)) no-repeat, url(https://armchairmogul.files.wordpress.com/2011/07/supes.jpg) center/cover no-repeat;
+  color: black;
+  grid-template-columns: 1fr 6.875em;
+  grid-template-rows: 1fr 3.125em;
+}
+.card-front:before {
+  border: .125em dotted #fff;
+  content: "";
+  height: 125%;
+  position: absolute;
+  top: -10%;
+  right: 8%;
+  width: 125%;
+}
+.card-front:after {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/159363/NicePng_dc-comics-logo-png_832568.png) center 1.5em/75% no-repeat, linear-gradient(-8deg, #003970, #0179ef 5.625em, rgba(1, 121, 239, 0) 5.625em, rgba(1, 121, 239, 0)) no-repeat;
+  content: '';
+  width: 5em;
+  height: 6.25em;
+  bottom: 0;
+  right: .625em;
+  position: absolute;
+}
+.card-back {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/159363/NicePng_dc-comics-logo-png_832568.png) 0.75em 0.75em/20% no-repeat, linear-gradient(rgba(1, 121, 239, 0), rgba(1, 121, 239, 0) 23.25em, rgba(255, 255, 255, 0.85) 23.25em, rgba(255, 255, 255, 0.85)) no-repeat, linear-gradient(-90deg, #0179ef 5em, rgba(1, 121, 239, 0)) no-repeat, url(https://imgix.ranker.com/user_node_img/42/822905/original/david-finch-writers-photo-u4?w=650&q=50&fm=pjpg&fit=crop&crop=faces) center/cover no-repeat;
+  color: white;
+  grid-template-columns: 1fr 8em;
+  grid-template-rows: 1fr 12em 2em 5em;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.hero-details_back {
+  background: linear-gradient(#000, #333);
+  grid-column: 2 / 3;
+  grid-row: 2/5;
+}
+.hero-details_back p {
+  font-size: .7em;
+  font-weight: 400;
+  line-height: 1.4em;
+  padding: .75em;
+}
+.hero-name {
+  grid-row: 2 / 3;
+}
+.hero-name_front {
+  color: #fff;
+  font-size: 1.5em;
+  text-align: right;
+  text-transform: uppercase;
+}
+.hero-name_back {
+  font-size: 2em;
+  grid-column: 1/3;
+  grid-row: 3/4;
+  padding: 0 .25em;
+  text-align: right;
+  text-shadow: 0px 3px 1px #111;
+  text-transform: uppercase;
+}
+
+.alt-name_front {
+  color: #fff;
+  font-weight: 400;
+  margin-top: .5em;
+  text-align: right;
+  text-transform: uppercase;
+}
+.alt-details-list {
+  grid-column: 2/3;
+  grid-row: 4/5;
+}
+.alt-details_name, .alt-details_group {
+  font-size: .65em;
+  font-weight: 600;
+  margin-bottom: 1em;
+  padding-left: .5em;
+  text-transform: uppercase;
+}
+.alt-details_name:before, .alt-details_group:before {
+  content: 'name';
+  display: block;
+  font-size: .9em;
+  font-weight: 400;
+  line-height: 1em;
+  text-transform: none;
+}
+.alt-details_name:before {
+  content: "Real Name";
+}
+.alt-details_group:before {
+  content: "Group Affiliation";
+}
+
+    </style>
+</head>
+<body translate="no">
+<div class="page js-card"></div>
+<script id="rendered-js">
+      var dcCards = document.querySelector(".js-card");
+
+var heroName = [
+	"Superman",
+	"Batman",
+	"Wonderwoman",
+	"Flash",
+	"Green Lantern",
+	"Aquaman",
+	"Cyborg"
+];
+
+var altName = [
+	"Kal-El / Clark Kent",
+	"Bruce Wayne",
+	"Diana Prince",
+	"Barry Allen",
+	"Hal Jordan",
+	"Arthur Curry",
+	"Victor Stone"
+];
+
+var groupAffiliation = [
+	"Justice League",
+	"Justice League",
+	"Justice League",
+	"Justice League",
+	"Justice League",
+	"Justice League",
+	"Justice League"
+];
+
+var comicArt = [
+	"https://armchairmogul.files.wordpress.com/2011/07/supes.jpg",
+	"https://imgix.ranker.com/user_node_img/42/822905/original/david-finch-writers-photo-u4?w=650&q=50&fm=pjpg&fit=crop&crop=faces",
+	"https://cdn1.thr.com/sites/default/files/imagecache/NFE_portrait/2018/08/wonder_woman_58_-_publicity_-_p_2018.jpg",
+	"https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/272820/381201/jul180644__14403.1537997529.jpg?c=2&imbypass=on",
+	"https://i.pinimg.com/originals/a9/52/58/a9525813f9beddc4a1818d87b8d4c963.jpg",
+	"https://i.pinimg.com/originals/a2/78/12/a2781277d54f3fd21f7194860bf708be.jpg",
+	"https://i.pinimg.com/originals/6e/7c/48/6e7c481f7750f3f285ff3f58b87dd686.jpg"
+];
+
+var heroDetails = [
+	"A member of, and inspiration for, the Justice League. He is a Kryptonian survivor, and a journalist for the Daily Planet based in Metropolis.",
+	"A wealthy socialite, and the owner of Wayne Enterprises. He dedicates himself to protecting Gotham City from its criminal underworld as a highly trained, masked vigilante equipped with various tools and weapons.",
+	"An antiquities dealer and an immortal Amazonian warrior, who is the crown princess of Themyscira. She is endowed with metahuman attributes and abilities inherited from her parents.",
+	"A Central City University student, who can move at superhuman speeds with his ability to tap into the Speed Force.",
+	"Green Lantern",
+	"The heir to the throne of the undersea nation of Atlantis.[11] His metahuman aquatic abilities and physical attributes originate from his Atlantean physiology.",
+	"A former college athlete who, after being cybernetically reconstructed after a nearly fatal car accident, is turned into a techno-organic being enhanced by reactive, adaptive biomimetic alien technology."
+];
+
+var comicCard = "";
+for (i = 0; i < heroName.length; i++) {
+	comicCard +=
+		"<div class='card'><div class='card-inner'><div class='card-front'><div class='hero-name'><h2 class='hero-name_front'>" +
+		heroName[i] +
+		"</h2><h5 class='alt-name_front'>" +
+		altName[i] +
+		"</h5></div></div><div class='card-back'><div class='hero-details_back'><p>" +
+		heroDetails[i] +
+		"</p></div><h1 class='hero-name_back'>" +
+		heroName[i] +
+		"</h1><div class='alt-details-list'><h2 class='alt-details_name'>" +
+		altName[i] +
+		"</h2><h2 class='alt-details_group'>" +
+		groupAffiliation[i] +
+		"</h2></div></div></div></div>";
+}
+
+dcCards.insertAdjacentHTML("beforeend", comicCard);
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+   .note-editor.note-frame {
+       border: 0px solid rgba(0, 0, 0, .2) !important;
+   }
+   
+   .card-header {
+       border-bottom: 1px solid hsl(147deg 17% 94%) !important;
+   }
+   
+   .note-btn-group .note-btn {
+       border-color: rgb(255 255 255) !important;
+       padding: .28rem .65rem;
+       font-size: 14px;
+       border-right: 1px solid #e9f3ed !important;
+   }
+   
+   .btn-light {
+       border-color: #ffffff !important;
+       background-color: #ffffff !important;
+   }
+   
+   .note-editor {
+       width: 96.2%;
+       display: block;
+       margin-left: -5px;
+       margin-top: 0px;
+       position: absolute;
+       z-index: 3;
+   }
+   
+   #summer-note {
+       position: absolute;
+       top: 40px;
+       margin-right: 27px;
+       margin-left: 18px;
+       margin-bottom: 10px;
+       height: 92%;
+       width: 96%;
+       margin-top: auto;
+   }
+   
+   .modal-backdrop {
+       display: none !important;
+   }
+   
+   .note-toolbar {
+       background: hsl(0deg 0% 100%) !important;
+   }
+   
+   .container {
+       position: absolute;
+       left: 10%;
+       right: 10%;
+       top: 10%;
+       bottom: 10%;
+   }
+   
+   .custom-toolbar {
+       padding: 5px;
+   }
+   
+   h1 {
+       text-align: center;
+   }
+   
+   .note-editor.note-frame.fullscreen {
+       border: 1px solid #bfd6c8 !important;
+   }
+   
+   .note-editing-area {
+       border: none;
+   }
+   
+   .note-editor.note-frame {
+       border: none;
+   }

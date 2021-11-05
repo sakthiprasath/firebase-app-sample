@@ -1,0 +1,116 @@
+#overlay {
+    width: 101%;
+    position: absolute;
+    top: 0%;
+    background-color: transparent;
+    overflow-y: hidden;
+    transition: 0.5s;
+    z-index: 4;
+    height: 94%;
+    left: 0px;
+    display: none;
+}
+
+#hider-for-resize {
+    height: 0%;
+    width: 100%;
+    top: 0px;
+    position: absolute;
+}
+
+@media screen and (max-height: 450px) {
+    #overlay {
+        overflow-y: auto;
+    }
+    #overlay a {
+        font-size: 20px
+    }
+    #overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+.open-close {
+    color: rgb(80 137 198);
+    font-size: 13px;
+    margin-left: 4px !important;
+    padding-top: 3px !important;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 500;
+}
+
+.open-close:hover {}
+
+#result-iframe {
+    width: 99%;
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+    min-height: 20px;
+    background: #f4f7f9;
+}
+
+#iframe-dragger-button {
+    width: 100%;
+    height: 40px;
+    top: -20px;
+    position: relative;
+    background-image: linear-gradient(270deg, #60D69F 0%, #19A0C0 100%);
+    cursor: grab;
+    border: 1px solid white;
+}
+
+#iframe-dragger-button:click {
+    cursor: grabbing;
+}
+
+#video-section {
+    height: 500px;
+    overflow-y: scroll;
+    width: 101%;
+    padding: 30px;
+    display: flex;
+    grid-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.video-name {
+    padding: 10px;
+    font-family: cursive;
+    box-sizing: content-box;
+    font-variant-caps: small-caps;
+    text-align: center;
+}
+
+.video-content {
+    height: 230px;
+}
+
+
+/*stream local video*/
+
+#local-stream {
+    height: 0;
+    overflow: hidden;
+    width: 0;
+    top: -13px;
+    left: 20px;
+}
+
+[type="file"]+label {
+    &:hover {
+        background-color: darken(#f15d22, 10%);
+    }
+    &.button {
+        background-color: #f79159;
+        box-shadow: 0 6px darken(#f79159, 10%);
+        transition: none;
+        &:hover {
+            box-shadow: 0 4px darken(#f79159, 10%);
+            top: 2px;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+.note-editor:hover::-webkit-scrollbar-thumb {
+    width : 6px;
+    display :block !important;
+    overflow-x: hidden;
+}
+#display-tab-setting-message{
+    position: absolute;
+	margin-top: 56px;
+	margin-left: 26px;
+	width: 99%;
+	height: 85%;
+	border: none;
+	display: block;
+	background: white;
+}
+#display-tab-setting-backdrop{
+    position: absolute;
+	margin-top: 56px;
+	margin-left: 26px;
+	width: 99%;
+	height: 85%;
+	border: none;
+	display: block;
+	background: none;
+}
+.tab-setting-message{
+	left: 40%;
+    position: absolute;
+	top: 40%;
+	width: max-content;
+}
+.ui.dropdown .menu>.item:hover{
+    width: 100% !important;
+}
+.tree-file-tracker > span {
+    margin-left: 20px;
+    position: relative;
+    background: white;
+    font-size: 12px;
+    font-family: monospace;
+    cursor: pointer;
+    color: #7d80dc;
+}
+
+.tab-left-side{
+    content: &quot;&quot;;
+    border-left: 25px solid white;
+    border-bottom: 32px solid transparent;
+    width: 5px;
+}
