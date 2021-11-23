@@ -72,7 +72,7 @@ export default class loadComponentsContainer {
     }
     _get_file_html(uuid) {
         let self = this;
-        let html = `<div class='individual-search' id='${uuid}'>`;
+        let html = `<div class='individual-search card' id='${uuid}'>`;
         html += `<span class='search-result-item' >${self.label_map[uuid].name}</span></div>`;
         return html;
     }
@@ -93,7 +93,7 @@ export default class loadComponentsContainer {
         if (self.label_map[uuid].starred == "true") {
             star_icon_html = `<i class='icon star common-icon'> </i>`
         }
-        let html = `<div class='individual-search' id="${uuid}">
+        let html = `<div class='individual-search card' id="${uuid}">
                         <div class="individual-search-level-1">
                             <span class='search-result-item'>
                                 ${ret_json.name}
