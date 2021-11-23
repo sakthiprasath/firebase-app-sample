@@ -606,11 +606,11 @@ export default class DomActions {
             let iframe_ele = document.createElement('iframe');
             iframe_ele.src = "https://www.youtube.com/embed" + q1[1];
             //            return $(iframe_ele).css({'width':'100%','height':'100%'});
-            return $(iframe_ele).attr('width', '100%').attr('height', '100%').addClass('youtube-stream');
+            return $(iframe_ele).attr('width', '95%').attr('height', '90%').addClass('youtube-stream');
 
         } else if (link.indexOf('<iframe') > -1) {
             //               return $(link).css({'width':'100%','height':'100%'});
-            return $(link).attr('width', '100%').attr('height', '100%').addClass('youtube-stream');
+            return $(link).attr('width', '95%').attr('height', '90%').addClass('youtube-stream');
 
         } else if (link.indexOf('&') > -1) {
             let link_contents = link.split('&');
@@ -618,12 +618,12 @@ export default class DomActions {
             let actual_link = watch_splits[1].split('=')[1];
             let iframe_ele = document.createElement('iframe');
             iframe_ele.src = "https://www.youtube.com/embed/" + actual_link;
-            return $(iframe_ele).attr('width', '100%').attr('height', '100%').addClass('youtube-stream');
+            return $(iframe_ele).attr('width', '95%').attr('height', '90%').addClass('youtube-stream');
 
         } else if (link.includes('watch')) {
             let iframe_ele = document.createElement('iframe');
             iframe_ele.src = "https://www.youtube.com/embed/" + link.split('watch')[1].split('=')[1];
-            return $(iframe_ele).attr('width', '100%').attr('height', '100%').addClass('youtube-stream');
+            return $(iframe_ele).attr('width', '95%').attr('height', '90%').addClass('youtube-stream');
         }
 
 
