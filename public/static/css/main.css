@@ -552,6 +552,7 @@ box-shadow:10 2 2 2;
             top: 0%;
             left: 0px;
             display: none;
+            overflow: hidden;
         }
         
         #right-side-components-container-text-area {

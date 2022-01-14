@@ -252,7 +252,9 @@ export default class DomEvents {
     global_logout_event() {
         let self = this;
         $('#user-name-section').on('click', function() {
-            self.tsp.FireBase.logout();
+            /* self.tsp.FireBase.logout();
+            this function is moved to Header.js as menu() */
+            $(this).contextmenu();
         });
 
     }

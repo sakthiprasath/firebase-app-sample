@@ -2,6 +2,7 @@ import DomEvents from './DomEvents.js';
 
 
 export default class loadComponentsContainer {
+
     cache_elements() {
         let self = this;
         self.close_results_icon = $('.search-box-icons > .icon.close');
@@ -12,6 +13,7 @@ export default class loadComponentsContainer {
         // self.editor = $('#quick-file-editor'); //$($('.note-editable')[0]);
 
     }
+
     get_text_editor_content() {
         let self = this;
         // self.summer_note_ele = document.getElementById('quick-file-editor').contentWindow.document.getElementsByClassName('note-editable')[0];
@@ -19,6 +21,7 @@ export default class loadComponentsContainer {
         return $('#quick-file-editor').val();
         // return $("#quick-file-editor").summernote('code');
     }
+
     set_text_editor_content(content) {
         let self = this;
         // document.getElementById('quick-file-editor').contentWindow.document.getElementsByClassName('note-editable')[0].innerHTML = content;
@@ -70,12 +73,14 @@ export default class loadComponentsContainer {
             }
         });
     }
+
     _get_file_html(uuid) {
         let self = this;
         let html = `<div class='individual-search card' id='${uuid}'>`;
         html += `<span class='search-result-item' >${self.label_map[uuid].name}</span></div>`;
         return html;
     }
+
     build_individual_searchresult(uuid, file_content) {
         let self = this;
         let ret_json = self.label_map[uuid]
@@ -113,6 +118,7 @@ export default class loadComponentsContainer {
                     </div>`;
         return html;
     }
+
     split_and_full_screen_UI() {
         let self = this;
         let classList = $("#right-side-components").attr('class');
@@ -164,6 +170,7 @@ export default class loadComponentsContainer {
 
         self.events_map['individual-search']();
     }
+
     _file_switch_action_function(target) {
         let self = this;
         if (self.tsp.GlobalConstants.current_window === 3) {
@@ -218,6 +225,7 @@ export default class loadComponentsContainer {
         }
 
     }
+
     click_side_nav_button() {
         let self = this;
         if (self.tsp.GlobalConstants.window_width <= 450) {
@@ -225,6 +233,7 @@ export default class loadComponentsContainer {
             self._file_switch_action_function(($('#sidenav-button-id1')));
         }
     }
+
     _video_switch_action_function() {
         let self = this;
         if (self.tsp.GlobalConstants.previous_window != 3) {
@@ -514,7 +523,6 @@ export default class loadComponentsContainer {
 
     };
 
-
     get_file_from_server(file_key) {
 
         return this.label_map[file_key].content;
@@ -595,6 +603,7 @@ export default class loadComponentsContainer {
             }
         }
     }
+
     _create_new_file_factory_form() {
         /*create new file */
         let self = this;
@@ -631,7 +640,7 @@ export default class loadComponentsContainer {
             let screenRight = parseInt($('#pane').css('right'));
             let q1 = pane_width - parseInt(`${e.clientX}px`) + screenLeft; //130 is the
             let q2 = parseInt(`${e.clientX}px`);
-
+            if (!self.file_factory_mouse_is_down || q2 >= (screenWidth / 2)) return;
             if (q2 < screenLeft || q2 > screenLeft + pane_width)
                 return;
             left_part.css('width', q2 - screenLeft);
@@ -694,12 +703,14 @@ export default class loadComponentsContainer {
             self.tsp.NotificationBar.launch_notification('File Renamed');
         });
     }
+
     _onfocusout_rename_field(file_key) {
         let self = this;
         $('#quick-file-rename-field').on('blur', function() {
             self.__internal_rename(self, this, file_key);
         });
     }
+
     _build_rename_field_and_call_backend() {
         let self = this;
         self.click_side_nav_button();
