@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "lodash": "^4.17.21",
-    "loadash": "^1.0.0"
+    "firebase": "^9.6.10",
+    "loadash": "^1.0.0",
+    "lodash": "^4.17.21"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "10.19.0"
   },
   "author": "",
   "license": "ISC"

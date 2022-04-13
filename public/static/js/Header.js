@@ -80,7 +80,34 @@ export default class Header {
             $('#destination-container').css('width', '100%');
         });
     }
-
+    menu() {
+        let self = this;
+        $.contextMenu({
+            selector: '#user-name-section',
+            callback: function(key, options) {
+                switch (key) {
+                    // case "Preferences":
+                    //     {
+                    //         self._build_rename_field_and_call_backend();
+                    //         break;
+                    //     }
+                    case "Logout":
+                        {
+                            self.tsp.FireBase.logout();
+                            break;
+                        }
+                }
+            },
+            items: {
+                // "Preferences": {
+                //     name: "Preferences"
+                // },
+                "Logout": {
+                    name: "Logout"
+                }
+            }
+        });
+    }
     _open_close_main_section_wrapper() {
         let self = this;
         let tree_navigation_open_close = 0;
@@ -172,6 +199,8 @@ export default class Header {
         //            top_header_flag = 0;
         //        }
         //      });
+
+
     }
     init(tsp, to_return_Values) {
         tsp.Header = this;
@@ -179,6 +208,7 @@ export default class Header {
 
         this._header_orientation_events();
         this._open_close_main_section_wrapper();
+        this.menu();
         this._header_drag_bar_events()
             //        this._header_left_orientation();
         return $.Deferred().resolve(tsp, to_return_Values);

@@ -288,7 +288,6 @@ export default class FcBarcelona {
             let originalValue = self.toStr(fcBarcelonaData[key][1])
             fcResult[originalKey] = originalValue;
         }
-        console.log(fcResult);
         return fcResult;
     }
 
