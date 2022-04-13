@@ -38,7 +38,7 @@ export class FireBase {
             // console.log(user_data);
             $('#user-name-section').attr('data-tooltip', "Hey " +
                 self.user_data.displayName + " click to Logout");
-
+            
             $($('#user-name-section').children().get(0)).attr('src', self.user_data.photoURL);
             return def.resolve();
 

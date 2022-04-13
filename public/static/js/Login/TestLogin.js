@@ -12,10 +12,16 @@ class FireBase {
                         "photoURL": user.photoURL,
                         "uid": user.uid
                     }
+                let email_verified = user.email_verified;
+                console.log("email verified : ", email_verified);
+                
+               
                     // sessionStorage.setItem('primenotes-user-data', JSON.stringify(userData));
                 window.location.href = "../";
             } else {
                 debugger
+              
+                self.create_account();
                 // window.location.href = "login.html";
             }
         });
@@ -56,7 +62,24 @@ class FireBase {
         return ui.start('#firebaseui-auth-container', uiConfig);
 
     }
+    create_account(){
+        let email = $('#input-email').val();
+        let password = $('#input-password').val();
+        this.firebase.auth().createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(userCredential.user)
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
+        
 
+    }
     logout() {
         firebase.auth().signOut().then(function() {
             console.log('success');
@@ -80,6 +103,9 @@ class FireBase {
         this.on_auth_state_change();
 
         this.login();
+        $('#submit-button').on('click', ()=>{
+            self.create_account();
+        });
 
 
     }

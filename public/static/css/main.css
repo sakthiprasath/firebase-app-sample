@@ -465,6 +465,7 @@ box-shadow:10 2 2 2;
             box-sizing: content-box;
             color: #362e77;
             border-bottom: 1px solid #e0eef3;
+            border: 1px solid #e9f3ed !important;
             min-width: 270px;
             border: 1px solid #e9f3ed;
             width: 100%;
@@ -1160,10 +1161,12 @@ box-shadow:10 2 2 2;
             position: absolute;
             background: white;
             z-index: 5;
-            margin-left: 52px;
+            margin-left: 30px;
             margin-top: 7px;
         }
-        
+        .file-name-for-video-notes{
+            margin-left: 55px !important;
+        }
         #html-renderer-section {
             position: absolute;
             top: 0%;

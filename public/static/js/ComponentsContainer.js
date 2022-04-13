@@ -210,7 +210,7 @@ export default class loadComponentsContainer {
         }
         self._build_file_factory_options();
         // self._open_settings();   
-
+        self.action_function_map['switch_class_for_quick_notes_filename']();
 
 
 
@@ -271,7 +271,7 @@ export default class loadComponentsContainer {
 
 
         self.fillRightSideComponents(self.curr_file_uuid);
-
+        self.action_function_map['switch_class_for_video_notes_filename']();
         $('#video-stream-in-file-factory').css('display', 'block');
         //                $('#file-name').off('click');
 
@@ -429,7 +429,6 @@ export default class loadComponentsContainer {
 
                     self.events_map['save_file_if_blured']();
                     self.fillRightSideComponents(file_key);
-                    $('#quick-file-editor').focus();
                 });
             },
             "save_file_if_blured": () => {
@@ -600,7 +599,14 @@ export default class loadComponentsContainer {
                 });
                 return defObj.promise();
 
-            }
+            },
+            switch_class_for_video_notes_filename: ()=>{
+                $('#file-name').addClass('file-name-for-video-notes');
+            },
+            switch_class_for_quick_notes_filename: ()=>{
+                $('#file-name').removeClass('file-name-for-video-notes');
+            },
+            
         }
     }
 

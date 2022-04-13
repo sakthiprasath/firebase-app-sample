@@ -86,11 +86,11 @@ export default class Header {
             selector: '#user-name-section',
             callback: function(key, options) {
                 switch (key) {
-                    case "Preferences":
-                        {
-                            self._build_rename_field_and_call_backend();
-                            break;
-                        }
+                    // case "Preferences":
+                    //     {
+                    //         self._build_rename_field_and_call_backend();
+                    //         break;
+                    //     }
                     case "Logout":
                         {
                             self.tsp.FireBase.logout();
@@ -99,9 +99,9 @@ export default class Header {
                 }
             },
             items: {
-                "Preferences": {
-                    name: "Preferences"
-                },
+                // "Preferences": {
+                //     name: "Preferences"
+                // },
                 "Logout": {
                     name: "Logout"
                 }

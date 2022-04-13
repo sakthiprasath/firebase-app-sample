@@ -12,7 +12,10 @@ class FireBase {
                         "photoURL": user.photoURL,
                         "uid": user.uid
                     }
-                    // sessionStorage.setItem('primenotes-user-data', JSON.stringify(userData));
+                    let email_verified = user.email_verified;
+                    console.log("email verified : ", email_verified);
+                    
+                    sessionStorage.setItem('primenotes-user-data', JSON.stringify(userData));
                 window.location.href = "../";
             } else {
                 debugger
@@ -41,7 +44,7 @@ class FireBase {
             signInSuccessUrl: '../index.html',
             signInOptions: [
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
                 // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
                 // firebase.auth.GithubAuthProvider.PROVIDER_ID,
                 // firebase.auth.EmailAuthProvider.PROVIDER_ID,

@@ -92,8 +92,8 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 
     <script src="https://semantic-ui.com/examples/assets/library/jquery.min.js"></script>
-    <script src="../dist/testprimenoteslogin.js"></script>
-    <!-- <script src="../static/js/Login/TestLogin.js"></script> -->
+    <!-- <script src="../dist/Login.js"></script> -->
+    <script src="../static/js/Login/TestLogin.js"></script>
     <script>
         if (document.location.search.match(/type=embed/gi)) {
             window.parent.postMessage("resize", "*");
@@ -113,28 +113,34 @@
             <div class="col-md-6 bg-white p-5">
                 <h3 class="pb-3">Login To PrimeNotes app </h3>
                 <div class="form-style">
-                    <form>
+                    <!-- <form> -->
                         <div class="form-group pb-3">
-                            <input type="email" placeholder="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="email" placeholder="Email" class="form-control" id="input-email" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group pb-3">
-                            <input type="password" placeholder="Password" class="form-control" id="exampleInputPassword1">
+                            <input type="password" placeholder="Password" class="form-control" id="input-password">
                         </div>
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center"><input name="" type="checkbox" value="" /> <span class="pl-2 font-weight-bold">Remember Me</span></div>
                             <div><a href="#">Forget Password?</a></div>
                         </div>
                         <div class="pb-2">
-                            <button type="submit" class="btn btn-dark w-100 font-weight-bold mt-2">Submit</button>
+                            <button  id="submit-button" class="btn btn-dark w-100 font-weight-bold mt-2">Submit</button>
                         </div>
-                    </form>
+                    <!-- </form> -->
                     <div class="sideline">OR</div>
-                    <div>
-                        <div id="firebaseui-auth-container"></div>
+                    
+
+                    <div style="background:#f4f6fa">
+                        <div id="firebaseui-auth-container">
+                            <img src="../static/images/logo_with_quote.PNG" style="width: 100%;" />
+                        </div>
                     </div>
-                    <div class="pt-4 text-center">
+
+                   
+                    <!-- <div class="pt-4 text-center">
                         Get Members Benefit. <a href="#">Sign Up</a>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
