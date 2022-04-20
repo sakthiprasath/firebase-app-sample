@@ -469,6 +469,7 @@ box-shadow:10 2 2 2;
             min-width: 270px;
             border: 1px solid #e9f3ed;
             width: 100%;
+            max-width: 270px !important;
         }
         
         .individual-search-background {
