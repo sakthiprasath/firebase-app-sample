@@ -5,6 +5,7 @@ export default class loadComponentsContainer {
 
     cache_elements() {
         let self = this;
+        self.search_box = $('#search-box');
         self.close_results_icon = $('.search-box-icons > .icon.close');
         self.close_youtube_text = $('.youtube-video-link-close');
         self.youtube_txt_box = $('#youtube-video-link');
@@ -99,7 +100,7 @@ export default class loadComponentsContainer {
             star_icon_html = `<i class='icon star common-icon'> </i>`
         }
         let html = `<div class='individual-search card' id="${uuid}">
-                        <div class="individual-search-level-1">
+                        <div class="individual-search-level-1" title="${ret_json.name}">
                             <span class='search-result-item'>
                                 ${ret_json.name}
                             </span>
@@ -310,7 +311,7 @@ export default class loadComponentsContainer {
             }
             /*highlighting content while searching */
             let q1 = self.label_map[key].content;
-            let q2 = self.label_map[key].name
+            let q2 = self.label_map[key].name;
             let firstIndex_content = q1.toLowerCase().search(searchContent.toLowerCase())
 
             let firstIndex_name = q2.toLowerCase().search(searchContent.toLowerCase())
@@ -485,12 +486,49 @@ export default class loadComponentsContainer {
                     $('#search-box').val('').focus();
                     self.tsp.loadComponentsContainer.callSearchResults("");
                 });
-            }
+            }, 
+            "tags_select": () => {
+                    let local_self = this;
+                   $('.filter-search-icon').on('click', (ele)=>{
+                        let m1 = {};
+                        let tags = new Set();
+                        let label_map = local_self.label_map;
+                        let sorted_tags_names = []
+                
+                        for(var file_metadata_map in label_map){
+                            sorted_tags_names.push(label_map[file_metadata_map].name)
+                        }
+
+                        sorted_tags_names.sort()
+
+                        setTimeout( function(){
+                            $('.filter-search-icon').contextmenu();
+                        }, 50);
+
+                        sorted_tags_names.map((name) => {
+                            let tag_name = name.split(' ')[0];
+                            m1[tag_name] = {
+                                name: tag_name
+                            };
+                        });
+                       
+                        $.contextMenu('create', {
+                            selector: '.filter-search-icon',
+                            className: 'tag-names-drop-down',
+                            callback: function(key, options) {
+
+                                self.search_box.val(key);
+                                self.callSearchResults(key.toLocaleLowerCase());                                
+                                
+                            },
+                            items: m1
+                        });
+                   }); 
+                }
         }
 
         /* initializing eventlistners by calling above event_map in a loop*/
         for (let key in self.events_map) {
-            //          console.log(events_map[key]);
             self.events_map[key]();
         }
     };

@@ -163,12 +163,6 @@
             transition: 0.5s;
         }
         
-        #create-new-file {
-            display: block;
-            margin-left: 9px;
-            font-size: 20px;
-        }
-        
         #components-search-container {
             position: absolute;
             height: calc(100% - 0px);
@@ -235,7 +229,7 @@
             width: calc(98%);
             color: #26162d;
             font-weight: 600;
-            background: white;
+            background: rgb(249 246 255 / 90%);
         }
         
         .middle-section-bg-color {
@@ -434,15 +428,17 @@ box-shadow:10 2 2 2;
         
         .search-result-item {
             position: relative;
-            width: 100%;
+            width: 150px;
             border-radius: 1px;
             padding-left: 0px;
-            overflow-y: scroll;
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 500;
-            color: #5089c6;
+            color: rgb(80, 137, 198);
             letter-spacing: 0.5px;
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
         
         .unselectable {
@@ -465,18 +461,18 @@ box-shadow:10 2 2 2;
             box-sizing: content-box;
             color: #362e77;
             border-bottom: 1px solid #e0eef3;
-            border: 1px solid #e9f3ed !important;
+            border: 1px solid #e2e6ee !important;
             min-width: 270px;
             border: 1px solid #e9f3ed;
             width: 100%;
             max-width: 270px !important;
+            background-color: rgb(249 246 255 / 90%) !important;
         }
         
         .individual-search-background {
             font-weight: bold;
             color: white !important;
             border-left: 6px solid #5089c6 !important;
-            background-color: #f4f7f9;
         }
         
         .individual-search-background .individual-search-level-1>span .star.icon {
@@ -505,6 +501,7 @@ box-shadow:10 2 2 2;
         .individual-search-level-1 {
             display: flex;
             flex-direction: row;
+            justify-content: space-between;
         }
         
         .individual-search-file-content {
@@ -934,11 +931,12 @@ box-shadow:10 2 2 2;
         }
         
         .ui.horizontal.label {
-            color: #310d0d;
             font-size: 0.75rem;
-            font-family: 'Roboto';
-            font-weight: 300;
-            background: #f4f7f9;
+            font-family: Roboto;
+            font-weight: 700;
+            background: rgb(160 199 239);   
+            border-radius: 1px;
+            color: white;
         }
         
         .search-container>.icon.close {
@@ -1578,4 +1576,15 @@ box-shadow:10 2 2 2;
         
         .common-icon {
             color: #5089c6;
+        }
+        #chat-file-icon-section{
+            display: flex;
+            flex-direction: row;
+        }
+        .filter-search-icon{
+            padding: 1.3em !important;
+            margin-left: 9px !important;
+        }
+        .context-menu-list {
+            z-index: 11 !important;
         }
