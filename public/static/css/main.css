@@ -461,7 +461,8 @@ box-shadow:10 2 2 2;
             box-sizing: content-box;
             color: #362e77;
             border-bottom: 1px solid #e0eef3;
-            border: 1px solid #e2e6ee !important;
+            border: 1px solid #e9f3ed !important;
+
             min-width: 270px;
             border: 1px solid #e9f3ed;
             width: 100%;
