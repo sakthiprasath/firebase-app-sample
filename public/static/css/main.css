@@ -253,7 +253,7 @@
         }
         
         #quick-notes-in-file-factory {
-            D position: absolute;
+            position: absolute;
             width: inherit;
             overflow: hidden;
             height: calc(100%) !important;
@@ -428,11 +428,11 @@ box-shadow:10 2 2 2;
         
         .search-result-item {
             position: relative;
-            width: 150px;
+            width: 250px;
             border-radius: 1px;
             padding-left: 0px;
             font-size: 17px;
-            font-weight: 500;
+            font-weight: 800;
             color: rgb(80, 137, 198);
             letter-spacing: 0.5px;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -461,8 +461,7 @@ box-shadow:10 2 2 2;
             box-sizing: content-box;
             color: #362e77;
             border-bottom: 1px solid #e0eef3;
-            border: 1px solid #e9f3ed !important;
-
+            border: 1px solid #dceae2 !important;
             min-width: 270px;
             border: 1px solid #e9f3ed;
             width: 100%;
@@ -509,7 +508,7 @@ box-shadow:10 2 2 2;
             font-size: 11px;
             font-weight: 400;
             min-height: 20px;
-            max-height: 33px;
+            max-height: 50px;
             text-align: left;
             text-overflow: ellipsis;
             overflow: hidden;
@@ -523,6 +522,7 @@ box-shadow:10 2 2 2;
         .individual-search-file-content-span {
             background: #8c4ed0;
             color: white;
+            font-size: 15px;
         }
         
         .video-notes-help {
@@ -900,7 +900,7 @@ box-shadow:10 2 2 2;
         
         .search-container {
             display: block;
-            width: 100%;
+            width: 75%;
         }
         
         .search-container>.ui.icon.input {
@@ -932,7 +932,7 @@ box-shadow:10 2 2 2;
         }
         
         .ui.horizontal.label {
-            font-size: 0.75rem;
+            font-size: 1.09rem;
             font-family: Roboto;
             font-weight: 700;
             background: rgb(160 199 239);   
@@ -1161,8 +1161,10 @@ box-shadow:10 2 2 2;
             position: absolute;
             background: white;
             z-index: 5;
-            margin-left: 30px;
+            margin-left: 25px;
             margin-top: 7px;
+            font-weight: 720;
+            color: #4f89c6;
         }
         .file-name-for-video-notes{
             margin-left: 55px !important;
@@ -1577,15 +1579,22 @@ box-shadow:10 2 2 2;
         
         .common-icon {
             color: #5089c6;
+            padding-left: 5px;
         }
         #chat-file-icon-section{
             display: flex;
             flex-direction: row;
         }
-        .filter-search-icon{
-            padding: 1.3em !important;
-            margin-left: 9px !important;
-        }
         .context-menu-list {
             z-index: 11 !important;
+        }
+
+        .context-menu-item:hover {
+            background: #a2c7ed;
+            color: black;
+            font-weight: 800;
+        }
+        .context-menu-item{
+            font-weight: 700;
+            color: #3870ac;
         }

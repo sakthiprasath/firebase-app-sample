@@ -643,8 +643,7 @@ export default class loadComponentsContainer {
             },
             switch_class_for_quick_notes_filename: ()=>{
                 $('#file-name').removeClass('file-name-for-video-notes');
-            },
-            
+            }
         }
     }
 

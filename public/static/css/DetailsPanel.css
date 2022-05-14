@@ -1,12 +1,13 @@
 #right-side-panel {
-    background: white;
+    background: #f8f6fe;
     height: calc(100%);
     border-left: 2px solid #ffffff;
     cursor: pointer;
     width: 300px;
     position: fixed;
     right: 0px;
-    border: 2px solid #e9f3ed;
+    border-left: 3px solid #e5e1f1;
+    padding: 15px;  
 }
 
 .details-section {
@@ -19,7 +20,6 @@
     display: grid;
     width: 100%;
     border-bottom: 2px solid #e9f3ed;
-    background: #ffffff;
     grid-template-columns: 6fr 1.5fr;
 }
 
@@ -28,13 +28,14 @@
 }
 
 .details-name {
-    color: #5089c6;
-    font-size: 13px;
-    font-weight: 600;
+    color: #4f89c6;
+    font-size: 17px;
+    font-weight: 800;
     text-align: center;
     position: relative;
     margin: 7px;
     max-width: 210px;
+    margin-top: 0px;
 }
 
 .row1 {
@@ -49,10 +50,12 @@
 
 .details-label {
     font-size: 13px;
-    font-weight: 700;
-    color: #2a1756;
+    font-weight: 600;
+    color: rgb(80, 137, 198);
 }
 
 .details-value {
-    color: #43769c
+    color: #43769c;
+    font-size: 13px;
+    font-weight: 700;
 }
