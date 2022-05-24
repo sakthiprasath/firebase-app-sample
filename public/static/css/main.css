@@ -517,6 +517,7 @@ box-shadow:10 2 2 2;
             max-width: 300px;
             width: 260px;
             text-overflow: ellipsis;
+            font-family: monospace;
         }
         
         .individual-search-file-content-span {
@@ -938,6 +939,7 @@ box-shadow:10 2 2 2;
             background: rgb(160 199 239);   
             border-radius: 1px;
             color: white;
+            border-radius: 20px;
         }
         
         .search-container>.icon.close {
