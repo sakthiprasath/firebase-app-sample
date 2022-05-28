@@ -461,7 +461,7 @@ box-shadow:10 2 2 2;
             box-sizing: content-box;
             color: #362e77;
             border-bottom: 1px solid #e0eef3;
-            border: 1px solid #dceae2 !important;
+            border: 1px solid #e9f3ed !important;
             min-width: 270px;
             border: 1px solid #e9f3ed;
             width: 100%;
@@ -1590,7 +1590,6 @@ box-shadow:10 2 2 2;
         .context-menu-list {
             z-index: 11 !important;
         }
-
         .context-menu-item:hover {
             background: #a2c7ed;
             color: black;
