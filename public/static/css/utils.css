@@ -110,8 +110,8 @@
     display: none;
     z-index: 100;
     position: fixed;
-    bottom: 10px;
-    left: 40%;
+    top: 10%;
+    right: 15px;
 }
 
 

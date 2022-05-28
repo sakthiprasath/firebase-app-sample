@@ -237,6 +237,7 @@
                                           padding-left: 10px !important;
                                           background-color: #a1c7ee;
                                           color:white"
+                                          title="Filter by Tags"
                                           >
                                             <i class="ui filter icon"></i>
                                           </div>
@@ -247,6 +248,9 @@
                                                 font-size: 15px;
                                                 background-color: #5089c6;
                                                 color:white;
+                                                "
+                                                title="Create New File"
+                                                >
                                                 ">
                                             <i class="icon plus "></i>
                                             <!-- <i class="icon plus circle common-icon"></i> -->
@@ -343,11 +347,23 @@
                                         "></i>
                                     </div>
                                     <div class="quick-notes-top-section">
-                                        <i id="video-notes-help" class="video-notes-help icon help circle video-notes-help common-icon" title="Help"></i>
-                                        <i class="quick-file-rename icon edit common-icon" title="Rename note"></i>
-                                        <i class="quick-file-fav icon star common-icon" title="Mark Favourite" alt="Star icon" loading="lazy"></i>
-                                        <i class="quick-file-delete icon trash red common-icon" title="Delete" alt="Delete Bin icon" lazy="loaded"></i>
-                                        <i class="quick-file-detail info circle icon common-icon" title="Info" alt="Info icon" loading="lazy"></i>
+                                        <div class="ui center aligned buttons" style="display: flex;">
+                                            <div id="video-notes-help" class="video-notes-help ui toggle button" title="Help">
+                                                <i class="icon help circle common-icon" ></i>
+                                            </div>
+                                            <div class="quick-file-rename ui toggle button" title="Rename note">
+                                                <i class="icon edit common-icon"></i>
+                                            </div>
+                                            <div class="quick-file-fav ui toggle button" title="Mark Favourite">
+                                                <i class="icon star common-icon"  alt="Star icon" loading="lazy"></i>
+                                            </div>
+                                            <div class="quick-file-delete ui toggle button" title="Delete">
+                                                <i class=" icon trash red common-icon"  alt="Delete Bin icon" lazy="loaded"></i>
+                                            </div>
+                                            <div class="quick-file-detail ui toggle button" title="Info">
+                                                <i class="info circle icon common-icon"  alt="Info icon" loading="lazy"></i>
+                                            </div>
+                                          </div>
 
                                     </div>
 
