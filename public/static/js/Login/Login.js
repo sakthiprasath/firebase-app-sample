@@ -51,7 +51,7 @@ class FireBase {
                 //firebase.auth.PhoneAuthProvider.PROVIDER_ID
             ],
             // Terms of service url.
-            tosUrl: '../',
+            tosUrl: '../index.html',
 
         };
 
