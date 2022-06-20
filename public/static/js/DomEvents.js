@@ -41,7 +41,30 @@ export default class DomEvents {
             });*/
         /*close File container*/
         //$('#close-component-results-container').click();
-
+        self.online_checker();
+    }
+    online_checker(){
+        let should_show_notifaction = false;
+        setInterval( ()=>{
+            let def = $.Deferred();
+            $.get({
+                url: self.tsp.GlobalConstants.online_status_check_url,
+                cache: false
+            }).done((res)=>{
+                // console.log("response..............success");
+                if(should_show_notifaction){
+                    self.tsp.NotificationBar.launch_notification(self.tsp.GlobalConstants.online_status,  '', '', 5000);
+                    should_show_notifaction = false;
+                }
+                def.resolve();
+            }).fail((e)=>{
+                // console.log("failed to get............failure.");
+                self.tsp.NotificationBar.launch_notification(self.tsp.GlobalConstants.offline_status, '', '', 20000);
+                should_show_notifaction = true;
+                def.reject();
+            });
+            def.promise();
+        }, 10000);
     }
     static _get_action_object() {
         return new DomActions()

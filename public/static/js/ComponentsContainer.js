@@ -237,12 +237,12 @@ export default class loadComponentsContainer {
 
     _video_switch_action_function() {
         let self = this;
-        if (self.tsp.GlobalConstants.previous_window != 3) {
-            self.tsp.GlobalConstants.previous_window = 3;
-        } else {
-            self.split_and_full_screen_UI();
-        }
-        $('.individual-search').get(0).click();
+        // if (self.tsp.GlobalConstants.previous_window != 3) {
+        //     self.tsp.GlobalConstants.previous_window = 3;
+        // } else {
+        //     self.split_and_full_screen_UI();
+        // }
+        // $('.individual-search').get(0).click();
         $('.video-stream-back-to-file-list').show();
         $('.quick-notes-top-section').hide();
         //                $('#components-search-container').css({'top':'35px',
@@ -252,15 +252,15 @@ export default class loadComponentsContainer {
 
         $('#pane').css({ 'display': 'block' });
         $('#right-side-section').show();
-        let component_factory_icon_elems = $('.component-factory-left-icons');
-        let len = component_factory_icon_elems.length;
-        for (let i = 0; i < len; i++) {
-            let class_list = $(component_factory_icon_elems[i]).attr('class').split(' ');
-            if (class_list.indexOf('active') >= 0) {
-                $(component_factory_icon_elems[i]).removeClass('active');
-                break;
-            }
-        }
+        // let component_factory_icon_elems = $('.component-factory-left-icons');
+        // let len = component_factory_icon_elems.length;
+        // for (let i = 0; i < len; i++) {
+        //     let class_list = $(component_factory_icon_elems[i]).attr('class').split(' ');
+        //     if (class_list.indexOf('active') >= 0) {
+        //         $(component_factory_icon_elems[i]).removeClass('active');
+        //         break;
+        //     }
+        // }
 
         self.active_switch = "video-stream-switch";
 
@@ -491,12 +491,11 @@ export default class loadComponentsContainer {
                     let local_self = this;
                    $('.filter-search-icon').on('click', (ele)=>{
                         let m1 = {};
-                        let tags = new Set();
                         let label_map = local_self.label_map;
                         let sorted_tags_names = []
                 
                         for(var file_metadata_map in label_map){
-                            sorted_tags_names.push(label_map[file_metadata_map].name)
+                            sorted_tags_names.push(label_map[file_metadata_map].name.toLocaleLowerCase())
                         }
 
                         sorted_tags_names.sort()

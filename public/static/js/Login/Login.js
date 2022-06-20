@@ -18,7 +18,7 @@ class FireBase {
                     sessionStorage.setItem('primenotes-user-data', JSON.stringify(userData));
                 window.location.href = "../";
             } else {
-                debugger
+                
                 // window.location.href = "login.html";
             }
         });

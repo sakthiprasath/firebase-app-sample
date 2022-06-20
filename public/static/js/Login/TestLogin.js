@@ -1,4 +1,20 @@
-class FireBase {
+// import { getAuth, sendEmailVerification, createUserWithEmailAndPassword } from "firebase/auth";
+
+class TestLogin {
+    set_user_data(user){
+        let user_data = {
+            "email": user.email,
+            "displayName": user.displayName,
+            "photoURL": user.photoURL,
+            "uid": user.uid,
+            "emailVerfied": user.emailVerified
+        }
+        // let email_verified = user.email_verified;
+        return user_data
+    }
+    set_session_storage(user_data){
+        sessionStorage.setItem('primenotes-user-data', JSON.stringify(user_data));
+    }
     on_auth_state_change() {
         let self = this;
         let str_const = 'primenotes-uid';
@@ -6,24 +22,10 @@ class FireBase {
         firebase.auth().onAuthStateChanged(function(user) {
 
             if (user != null) {
-                let userData = {
-                        "email": user.email,
-                        "displayName": user.displayName,
-                        "photoURL": user.photoURL,
-                        "uid": user.uid
-                    }
-                let email_verified = user.email_verified;
-                console.log("email verified : ", email_verified);
-                
-               
-                    // sessionStorage.setItem('primenotes-user-data', JSON.stringify(userData));
-                window.location.href = "../";
-            } else {
-                debugger
-              
-                self.create_account();
-                // window.location.href = "login.html";
+                let user_data = self.set_user_data(user);
+                self.set_session_storage(user_data);    
             }
+
         });
     }
     login() {
@@ -47,10 +49,10 @@ class FireBase {
             signInSuccessUrl: '../index.html',
             signInOptions: [
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
                 // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
                 // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-                firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                // firebase.auth.EmailAuthProvider.PROVIDER_ID,
                 //firebase.auth.PhoneAuthProvider.PROVIDER_ID
             ],
             // Terms of service url.
@@ -62,23 +64,60 @@ class FireBase {
         return ui.start('#firebaseui-auth-container', uiConfig);
 
     }
-    create_account(){
-        let email = $('#input-email').val();
-        let password = $('#input-password').val();
-        this.firebase.auth().createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                console.log(userCredential.user)
-                // ...
+    login_with_email_and_password(email, password){
+        let self = this;
+        this.firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((user) => {
+                // Signed in
+                let user_data = self.set_user_data(user);
+                self.set_session_storage(user_data);
+                window.location.replace("../index.html");
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
+                $("#sign-in-warning").html("<p>" + error.message + "</p>");  
+                var errorCode = error.code;
+                var errorMessage = error.message;
             });
+    }
+    create_account(){
+        let email = $('#sign-up-email').val();
+        let password = $('#sign-up-password').val();
         
+        // const auth = getAuth();
+        this.firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            // ...
+            this.send_verfication();
+            
+          })
+          .catch((error) => {
+            $("#sign-up-warning").html("<p>" + error.message + "</p>");  
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
+            
+          });
+          
 
+    }
+    send_verfication(should_redirect_to_index){
+        let auth = this.firebase.auth();
+        var actionCodeSettings = {
+            url: 'https://primenotes-17aa2.firebaseapp.com/templates/login.html',
+            handleCodeInApp: false
+          };
+        auth.currentUser.sendEmailVerification(actionCodeSettings)
+        .then(() => {
+            console.log("verification email sent")
+            if(should_redirect_to_index){
+                window.location.href = "../";
+            }
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+          });
     }
     logout() {
         firebase.auth().signOut().then(function() {
@@ -103,13 +142,44 @@ class FireBase {
         this.on_auth_state_change();
 
         this.login();
-        $('#submit-button').on('click', ()=>{
-            self.create_account();
+        $('#sign-up-button').on('click', ()=>{
+            let confirm_password =$('#sign-up-reenter-password').val();
+            if(confirm_password ===  ''){
+                $("#sign-up-warning").html("<p>" + "confirm password field is empty" + "</p>");  
+            }
+            else{
+                self.create_account();    
+            }
+            
         });
 
+        $('#sign-in-button').on('click', ()=>{
+            let sign_in_email = $('#sign-in-email').val();
+            let sign_in_password = $('#sign-in-password').val();
+            self.login_with_email_and_password(sign_in_email, sign_in_password);
+        });
+        $("#sign-in-switch").on("click", ()=>{
+            $(".sign-in-section").show();
+            $(".sign-up-section").hide();
+          });
+          $("#sign-up-switch").on("click", ()=>{
+            $(".sign-in-section").hide();
+            $(".sign-up-section").show();
+          });
 
+          $('#sign-up-reenter-password').on('keyup', ()=>{
+            let confirm_password =$('#sign-up-reenter-password').val();
+            let password = $('#sign-up-password').val();
+            if(confirm_password !== password && confirm_password !== ''){
+                $("#sign-up-warning").html("<p>" + "password and confirm password are not same" + "</p>");  
+            }
+            else{
+                $("#sign-up-warning").html("<p>" + "" + "</p>");  
+            }
+                
+          })
     }
 }
 $(document).ready(function() {
-    new FireBase().init();
+    new TestLogin().init();
 });

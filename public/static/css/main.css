@@ -521,9 +521,13 @@ box-shadow:10 2 2 2;
         }
         
         .individual-search-file-content-span {
-            background: #8c4ed0;
+            background: #cfd4a6;
             color: white;
             font-size: 15px;
+            border-radius: 5px;
+            padding-left: 7px;
+            color: #3c3cd6;
+            padding-right: 7px;
         }
         
         .video-notes-help {
@@ -933,12 +937,12 @@ box-shadow:10 2 2 2;
         }
         
         .ui.horizontal.label {
-            font-size: 1.09rem;
+            font-size: 12px;
             font-family: Roboto;
-            font-weight: 700;
-            background: rgb(160 199 239);   
+            font-weight: 200;
+            background: rgb(239 238 243);
             border-radius: 1px;
-            color: white;
+            color: #b3a7cc;
             border-radius: 20px;
         }
         
@@ -1580,8 +1584,9 @@ box-shadow:10 2 2 2;
         }
         
         .common-icon {
-            color: #5089c6;
+            color: #396697;
             padding-left: 5px;
+            font-size: 11px !important;
         }
         #chat-file-icon-section{
             display: flex;
