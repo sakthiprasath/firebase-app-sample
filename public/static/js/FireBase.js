@@ -89,10 +89,11 @@ export class FireBase {
         let self = this;
         let str_const = 'primenotes-user-data';
         let def = $.Deferred();
-        let user_data = sessionStorage.getItem(str_const);
+        let user_data_json = sessionStorage.getItem(str_const);
+        self.user_data = JSON.parse(user_data_json)
+
         // firebase.auth().onAuthStateChanged(function(user) {
-        if (user_data != null && user_data != "null") {
-            self.user_data = JSON.parse(user_data);
+        if (self.user_data != null && self.user_data != "null") {
             
             $('#user-name-section').attr('data-tooltip', "Hey " +
                 self.user_data.displayName + " click to Logout");
@@ -100,7 +101,7 @@ export class FireBase {
             $($('#user-name-section').children().get(0)).attr('src', self.user_data.photoURL);
            
 
-            // if(! self.user_data.emailVerified){
+            // if(!self.user_data.emailVerified){
             //     self.get_send_verification_html();
             // }
             return def.resolve();

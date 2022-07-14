@@ -10,7 +10,7 @@ export default class loadComponentsContainer {
         self.close_youtube_text = $('.youtube-video-link-close');
         self.youtube_txt_box = $('#youtube-video-link');
         /*local constants */
-        self.left_and_middle_section = "315px";
+        self.left_and_middle_section = 315;
         // self.editor = $('#quick-file-editor'); //$($('.note-editable')[0]);
 
     }
@@ -127,7 +127,7 @@ export default class loadComponentsContainer {
         if (classList.indexOf('right-side-components-full-screen') >= 0) {
             $("#right-side-components").removeClass('right-side-components-full-screen');
             $("#right-side-components").addClass('right-side-components-split-screen');
-            $('.file-factory-split-bar').css('left', self.left_and_middle_section);
+            $('.file-factory-split-bar').css('left', self.left_and_middle_section - 7);
             $('#left-and-middle-section').css('width', self.left_and_middle_section);
             $('#left-and-middle-section').show();
             $('.sidenav-button-content-class')[0].classList.remove('right');
@@ -686,9 +686,11 @@ export default class loadComponentsContainer {
             if (q2 < screenLeft || q2 > screenLeft + pane_width)
                 return;
             left_part.css('width', q2 - screenLeft);
+            console.log("left part width : ",  q2 - screenLeft);
             right_part.css('width', q1 + 40);
             right_part.css('left', q2 - screenLeft + 3);
-            bar.css('left', q2 - screenLeft);
+            bar.css('left', q2 - screenLeft - 8);
+            console.log("bar left : ", q2 - screenLeft - 8);
         });
 
         document.addEventListener('mouseup', () => {
@@ -961,10 +963,10 @@ export default class loadComponentsContainer {
             },
             items: {
                 "rename": {
-                    name: "RENAME"
+                    name: "Rename"
                 },
                 "star": {
-                    name: "STAR"
+                    name: "Star"
                 },
                 "delete": {
                     name: "Delete"

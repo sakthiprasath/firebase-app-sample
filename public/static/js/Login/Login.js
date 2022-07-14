@@ -16,7 +16,7 @@ class FireBase {
                     console.log("email verified : ", email_verified);
                     
                     sessionStorage.setItem('primenotes-user-data', JSON.stringify(userData));
-                window.location.href = "../";
+                // window.location.href = "../";
             } else {
                 
                 // window.location.href = "login.html";

@@ -7,9 +7,9 @@ class TestLogin {
             "displayName": user.displayName,
             "photoURL": user.photoURL,
             "uid": user.uid,
-            "emailVerfied": user.emailVerified
+            "emailVerified": user.emailVerified
         }
-        // let email_verified = user.email_verified;
+        let email_verified = user.emailVerified;
         return user_data
     }
     set_session_storage(user_data){

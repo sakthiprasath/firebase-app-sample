@@ -27,7 +27,7 @@ export default class GlobalConstants {
         File Shortcuts
 
         CTRL + SHIFT + H            Help
-        CTRL + SHIFT + N            Create File
+        CTRL + SHIFT + [+]          Create File
         CTRL + SHIFT + R            Rename File
         CTRL + SHIFT + DELETE       Delete File
         CTRL + SHIFT + F            Mark Favourite

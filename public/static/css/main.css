@@ -230,6 +230,7 @@
             color: #26162d;
             font-weight: 600;
             background: rgb(249 246 255 / 90%);
+            box-shadow: 2px 1px 4px rgb(0 0 1 / 14%);
         }
         
         .middle-section-bg-color {
@@ -431,7 +432,7 @@ box-shadow:10 2 2 2;
             width: 250px;
             border-radius: 1px;
             padding-left: 0px;
-            font-size: 17px;
+            font-size: 14px;
             font-weight: 800;
             color: rgb(80, 137, 198);
             letter-spacing: 0.5px;
@@ -439,6 +440,7 @@ box-shadow:10 2 2 2;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
+            font-family: monospace;
         }
         
         .unselectable {
@@ -471,7 +473,7 @@ box-shadow:10 2 2 2;
         
         .individual-search-background {
             font-weight: bold;
-            color: white !important;
+            color: #f8f6fe !important;
             border-left: 6px solid #5089c6 !important;
         }
         
@@ -480,7 +482,7 @@ box-shadow:10 2 2 2;
         }
         
         .individual-search-background .individual-search-level-1>.search-result-item {
-            color: #5089c6;
+            color: #0b0d0f;
         }
         
         .individual-search-background .individual-search-result-metadata>.individual-search-file-content {
@@ -495,7 +497,8 @@ box-shadow:10 2 2 2;
         
         .individual-search-level-1>span .star.icon {
             display: block;
-            font-size: 11px !important;
+            font-size: 8px !important;
+            color: #b9aecf;
         }
         
         .individual-search-level-1 {
@@ -1165,12 +1168,12 @@ box-shadow:10 2 2 2;
         #file-name {
             width: max-content;
             position: absolute;
-            background: white;
             z-index: 5;
             margin-left: 25px;
             margin-top: 7px;
             font-weight: 720;
             color: #4f89c6;
+            font-variant-caps: all-small-caps;
         }
         .file-name-for-video-notes{
             margin-left: 55px !important;
@@ -1436,7 +1439,7 @@ box-shadow:10 2 2 2;
             z-index: 5;
             left: 350px;
             top: 1px;
-            background: white;
+            background: #f8f6fe;
         }
         
         .file-factory-split-bar:hover {
