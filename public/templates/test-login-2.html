@@ -26,6 +26,12 @@
     <script>
         window.console = window.console || function(t) {};
     </script>
+
+  
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+
     <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
@@ -40,17 +46,6 @@
         }
     </script>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <style>
       .tabs{
         width: 100%;
@@ -64,13 +59,13 @@
         width: max-width;
         height:40px;
         margin-top: 10px;
-        
-      
       }
       
       .container{
-        height: max-content;
-        
+        height: max-content; 
+      }
+      .ui.loader{
+        position: relative;
       }
       .logo{
           width: 100%;
@@ -93,11 +88,22 @@
         position: relative;
       }
 
+      .reset-password-section{
+        display: none;
+        position: relative;  
+      }
+
     </style>
       </head>
   <body>
     <div class="container">
       
+      <div class="ui loader " id="loader">
+        <div class="ui massive text loader">
+            <h3>Loading</h3>
+        </div>
+    </div>
+
       <div class="tabs">
         <div id="sign-in-switch" class="btn custome-button">
           <button class="button-class">Sign in</button>
@@ -118,11 +124,11 @@
           <form action="">
             <div class="user">
               <i class="bx bxs-user-circle"></i>
-              <input type="text" id="sign-in-email" placeholder="Enter your email" />
+              <input type="text" id="sign-in-email" placeholder="email" />
             </div>
             <div class="pass">
               <i class="bx bxs-lock-alt"></i>
-              <input type="password" id="sign-in-password" placeholder="Enter your password" />
+              <input type="password" id="sign-in-password" placeholder="password" />
             </div>
             
             
@@ -152,11 +158,11 @@
           <form action="">
             <div class="user">
               <i class="bx bxs-user-circle"></i>
-              <input type="text" id="sign-up-email" placeholder="Enter your email" />
+              <input type="text" id="sign-up-email" placeholder="email" />
             </div>
             <div class="pass">
               <i class="bx bxs-lock-alt"></i>
-              <input type="password" id="sign-up-password" placeholder="Enter your password" />
+              <input type="password" id="sign-up-password" placeholder="password" />
             </div>
             <div class="pass">
               <i class="bx bxs-lock-alt"></i>
@@ -179,6 +185,35 @@
             <button id="sign-up-button" class="button-class">Proceed</button>
           </div>
         </div>
+
+        <div class="reset-password-section">
+          <div class="top-header">
+            <div class="" >
+                <img class="logo" src="https://live.primenotes.app/static/images/logo_with_quote.PNG" />
+            </div>
+              <p>emai to reset the password</p>
+          </div>
+          <form action="">
+            <div class="user">
+              <i class="bx bxs-user-circle"></i>
+              <input type="text" id="reset-password-email" placeholder="email" />
+            </div>
+            
+            
+          </form>
+          <div class="top-header">
+            
+            <div id="reset-password-warning">
+              <p></p>
+            
+            </div>
+        </div>
+          
+          <div class="btn">
+            <button id="reset-password-button" class="button-class">Proceed</button>
+          </div>
+        </div>
+
       </div>
 
       <div class="top-header">
@@ -190,7 +225,7 @@
         </div>
       
     </div>
-   <p class="last">Forgot your password? <a href="#"> Reset Password </a></p>
+   <p id="reset-password" class="last">Forgot your password? <a href="#"> Reset Password </a></p>
     
   
    

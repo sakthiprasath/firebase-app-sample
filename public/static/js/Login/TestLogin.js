@@ -66,14 +66,17 @@ class TestLogin {
     }
     login_with_email_and_password(email, password){
         let self = this;
+        self.switch_loader();
         this.firebase.auth().signInWithEmailAndPassword(email, password)
             .then((user) => {
                 // Signed in
+                self.switch_loader();
                 let user_data = self.set_user_data(user);
                 self.set_session_storage(user_data);
                 window.location.replace("../index.html");
             })
             .catch((error) => {
+                self.switch_loader();
                 $("#sign-in-warning").html("<p>" + error.message + "</p>");  
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -102,20 +105,27 @@ class TestLogin {
 
     }
     send_verfication(should_redirect_to_index){
+        let self = this;
         let auth = this.firebase.auth();
         var actionCodeSettings = {
             url: 'https://primenotes-17aa2.firebaseapp.com/templates/login.html',
             handleCodeInApp: false
           };
+        self.switch_loader();
         auth.currentUser.sendEmailVerification(actionCodeSettings)
         .then(() => {
+            self.switch_loader();
             console.log("verification email sent")
+            $("#sign-up-warning").html("<p>" + self.verification_email_sent + "</p>");  
+            let sign_in_email = $('#sign-in-email').val();
             if(should_redirect_to_index){
                 window.location.href = "../";
             }
         }).catch((error) => {
+            self.switch_loader();
             const errorCode = error.code;
             const errorMessage = error.message;
+            $("#sign-up-warning").html("<p>" + error.message + "</p>");  
             // ..
           });
     }
@@ -125,8 +135,17 @@ class TestLogin {
             window.location.replace("../index.html");
         }, function() {})
     }
+
+    switch_loader(){
+        $('#loader').toggleClass('active');
+    }
+    hide_loader(){
+        $('#loader').toggleClass('active');
+    }
     init() {
         let self = this;
+        self.reset_password_sent_message = "Email sent, kindly visit your email inbox";
+        self.verification_email_sent = "Verification email sent, please check your email inbox"; 
         self.firebase_config = {
             apiKey: "AIzaSyApJRgVPBvyx7VQOcGdPPm_5NlgKVJEtX0",
             authDomain: "primenotes-17aa2.firebaseapp.com",
@@ -161,10 +180,12 @@ class TestLogin {
         $("#sign-in-switch").on("click", ()=>{
             $(".sign-in-section").show();
             $(".sign-up-section").hide();
+            $(".reset-password-section").hide();
           });
           $("#sign-up-switch").on("click", ()=>{
             $(".sign-in-section").hide();
             $(".sign-up-section").show();
+            $(".reset-password-section").hide();
           });
 
           $('#sign-up-reenter-password').on('keyup', ()=>{
@@ -177,7 +198,32 @@ class TestLogin {
                 $("#sign-up-warning").html("<p>" + "" + "</p>");  
             }
                 
-          })
+          });
+
+          $("#reset-password").on("click", ()=>{
+            $(".sign-in-section").hide();
+            $(".sign-up-section").hide();
+            $(".reset-password-section").show();
+            console.log("password reset clicked");
+          });
+          $('#reset-password-button').on('click', ()=>{
+            let reset_email = $('#reset-password-email').val();
+            console.log(reset_email);
+            self.switch_loader();
+            self.firebase.auth().sendPasswordResetEmail(reset_email).then((res)=>{
+                self.switch_loader();
+                $('#reset-password-warning').html("<p>" + self.reset_password_sent_message + "</p>");  
+                console.log(res);
+            }).catch((error)=>{
+                self.switch_loader();
+                $('#reset-password-warning').html("<p>" + error.message + "</p>");
+                console.log(error.code);
+                console.log(error.message);
+            });
+
+
+          });
+
     }
 }
 $(document).ready(function() {

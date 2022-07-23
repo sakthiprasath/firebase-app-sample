@@ -75,8 +75,7 @@ export class FireBase {
             url: 'https://primenotes-17aa2.firebaseapp.com/templates/login.html',
             handleCodeInApp: false
           };
-        auth.currentUser.sendEmailVerification(actionCodeSettings)
-        .then(() => {
+        auth.currentUser.sendEmailVerification(actionCodeSettings).then(() => {
             console.log("verification email sent");
             self.show_verification_email_sent();
             
@@ -101,9 +100,9 @@ export class FireBase {
             $($('#user-name-section').children().get(0)).attr('src', self.user_data.photoURL);
            
 
-            // if(!self.user_data.emailVerified){
-            //     self.get_send_verification_html();
-            // }
+            if(!self.user_data.emailVerified){
+                self.get_send_verification_html();
+            }
             return def.resolve();
         } else {
             // self.login().then(() => {
