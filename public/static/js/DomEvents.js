@@ -41,7 +41,8 @@ export default class DomEvents {
             });*/
         /*close File container*/
         //$('#close-component-results-container').click();
-        self.online_checker();
+        
+        // self.online_checker();
     }
     online_checker(){
         let should_show_notifaction = false;

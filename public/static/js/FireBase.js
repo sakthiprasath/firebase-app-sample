@@ -72,7 +72,7 @@ export class FireBase {
         let self = this;
         let auth = this.firebase.auth();
         var actionCodeSettings = {
-            url: 'https://primenotes-17aa2.firebaseapp.com/templates/login.html',
+            url: 'https://primenotes-17aa2.firebaseapp.com/templates/login-2.html',
             handleCodeInApp: false
           };
         auth.currentUser.sendEmailVerification(actionCodeSettings).then(() => {
@@ -110,7 +110,7 @@ export class FireBase {
             //     sessionStorage.setItem('primenotes-uid', uid);
             //     return def.resolve();
             // });
-            window.location.href = "templates/login.html";
+            window.location.href = "templates/login-2.html";
         }
         // });
         return def.promise();
@@ -120,7 +120,7 @@ export class FireBase {
         firebase.auth().signOut().then(function() {
             // console.log('success');
             sessionStorage.clear();
-            window.location.replace("templates/login.html");
+            window.location.replace("templates/login-2.html");
 
         }, function() {})
     }

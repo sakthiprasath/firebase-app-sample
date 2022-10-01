@@ -108,7 +108,7 @@ class TestLogin {
         let self = this;
         let auth = this.firebase.auth();
         var actionCodeSettings = {
-            url: 'https://primenotes-17aa2.firebaseapp.com/templates/login.html',
+            url: 'https://primenotes-17aa2.firebaseapp.com/templates/login-2.html',
             handleCodeInApp: false
           };
         self.switch_loader();
