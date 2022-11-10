@@ -23,7 +23,8 @@ export default class DomEvents {
             self.tsp.GlobalConstants.current_window = 1; //golbal declaration
             $('#close-editor-button').addClass('top-header-highlighter').click();
             setTimeout(function() {
-                $('#close-editor-button').click();
+                $('#open-close-overlay').click();
+                $('#sidenav-button-id1').click();
             }, 200)
             $('#stream-youtube-video').click();
             self._triggerClick('#main-section-button');

@@ -707,11 +707,37 @@ export default class loadComponentsContainer {
 
     _initialize_youtube_stream() {
         let self = this;
-        $('#stream-youtube-video').on('click', function() {
+        function check_if_the_url_is_a_pdf(url){
+            let PDF = ".pdf"
+            let index_of_pdf_str = url.lastIndexOf(PDF)
+            
+            if ( (url.length - index_of_pdf_str) == PDF.length)
+                return true;
+            
+            return false;
+        }
+        $('#youtube-video-link').on('keydown', function(event){
+            if(event.which !== 13 && event.which !==1 && event.which !==undefined)
+                return;
             let youtube_link = $('#youtube-video-link').val();
             self.__display_youtube_streaming_dialog();
-            //             $(self.dialog_component).css('display', 'block');
-            self.tsp.DomActions._create_component_open_close('youtube', youtube_link);
+            if(check_if_the_url_is_a_pdf(youtube_link)){
+                self.tsp.DomActions._create_component_open_close('pdf', youtube_link);
+            }
+            else{
+                self.tsp.DomActions._create_component_open_close('youtube', youtube_link);
+            }
+        });
+        $('#stream-youtube-video').on('click', function() {
+           
+            let youtube_link = $('#youtube-video-link').val();
+            self.__display_youtube_streaming_dialog();
+            if(check_if_the_url_is_a_pdf(youtube_link)){
+                self.tsp.DomActions._create_component_open_close('pdf', youtube_link);
+            }
+            else{
+                self.tsp.DomActions._create_component_open_close('youtube', youtube_link);
+            }
         });
 
         $('#open-youtube-frame').on('click', function() {

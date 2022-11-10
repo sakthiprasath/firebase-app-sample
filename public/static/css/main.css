@@ -175,7 +175,9 @@
             width: 315px;
             height: 100%;
         }
-        
+        .common-icon.arrow{
+            font-size: 20px !important;
+        }
         #sidenav-button-id1 {
             display: block;
         }
@@ -1581,7 +1583,12 @@ box-shadow:10 2 2 2;
             padding-top: 7px;
             height: 30px;
         }
-        
+        .input-box-with-box-shadow{
+            width: 50%;
+            box-shadow: 0px 0px 10px -4px rgb(13 0 7 / 86%);
+            height: 29px;
+            top: 0px;
+        }
         .icon {
             cursor: pointer;
         }
