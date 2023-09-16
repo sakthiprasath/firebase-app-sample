@@ -75,6 +75,7 @@ input[type="text"] {
     background: rgb(249 246 255 / 90%);
     cursor: text;
     font-family: monospace;
+    margin-left: 10%;
 }
 
 .seperator {
