@@ -143,7 +143,10 @@ export default class TreeClass {
         html += `<span class="folder">`
         html += `<span class='open-close-folder'> <i class="ui icon folder blue"></i> </span>${name}`
         html += `</span>`
-        html += `<span class='three-dots'>...</span>`
+        if(folder_path !=="Trash Restored"){
+            html += `<span class='three-dots'>...</span>`
+        }
+
         html += `</div>`;
         return html;
     }
@@ -202,15 +205,17 @@ export default class TreeClass {
         let self = this;
         let temp_map = {};
         var defObj = $.Deferred();
-        var promise =
-            $.ajax({
-                url: self.tsp.PrimenotesCache.data.url_prefix + '/api/tree-note//get-tree-with-metadata',
-                type: "GET",
-                contentType: 'application/x-www-form-urlencoded',
-                success: function(response) {
-                    return defObj.resolve(response);
-                }
-            });
+
+        // var promise =
+        //     $.ajax({
+        //         url: self.tsp.PrimenotesCache.data.url_prefix + '/api/tree-note//get-tree-with-metadata',
+        //         type: "GET",
+        //         contentType: 'application/x-www-form-urlencoded',
+        //         success: function(response) {
+        //             return defObj.resolve(response);
+        //         }
+        //     });
+
         return defObj.promise();
     }
 
@@ -410,7 +415,14 @@ export default class TreeClass {
                     self.tsp.NotificationBar.launch_notification(`${self.create_type} Creation Success`);
                 });
             },
-
+            update_tree_note_submit: function(file_uuid, savable_data, metadata){
+                let defObj = $.Deferred();
+                var promise = self.tsp.TreeNoteFirebase.update_file(file_uuid, savable_data, metadata).then(function(response){
+                    console.log(response);
+                    return defObj.resolve(response);
+                });        
+                return defObj.promise();
+            },
             copy_paste_UI_update: function(project_note_name, path, uuid) {
                 let new_file_html = `<li class="tree-file"><a href="#" class="file-click" filename="${project_note_name}" content-type="file" file-type="document" file-uuid="${uuid}" title="${project_note_name}" file-path="${path}">`;
                 new_file_html += `<div class="tree-note-file-name-div"><span> * </span>`;
@@ -606,6 +618,8 @@ export default class TreeClass {
                 }
             } else { //folder right click
                 self.parent_folder = $(curr).parent().get(0);
+                if (self.curr_active_folder === "Trash Restored")
+                    return;
                 if ($(self.parent_folder).attr('folder-path') === undefined)
                     self.parent_folder = $(curr).get(0);
 
@@ -622,7 +636,10 @@ export default class TreeClass {
                     $('.both-file-and-folder').show();
                 }
             }
-            $('.tree-note-star-input').prop('checked', self.metadata_map[path].starred == "true");
+            if (self.metadata_map && self.metadata_map[path]){
+                $('.tree-note-star-input').prop('checked', self.metadata_map[path].starred == "true");
+            }
+
             event.preventDefault();
             $(".context")
                 .show()
@@ -714,33 +731,49 @@ export default class TreeClass {
     __internal_folder_rename(uuid, old_path, new_path, new_name) {
         let self = this;
         let def = $.Deferred();
-        let new_file_name = $('#tree-note-file-rename').val();
-        //            self.label_map[file_key].name = new_file_name;
-        let send_data = {
-            'uuid': uuid,
-            'old_path': old_path,
-            'new_path': new_path,
-            'new_name': new_name
-        }
+        let new_folder_name = $('#tree-note-file-rename').val();
+        
+        // let send_data = {
+        //     'uuid': uuid,
+        //     'old_path': old_path,
+        //     'new_path': new_path,
+        //     'new_name': new_name
+        // }
 
-        self.tsp.DomActions._rename_tree_note_folder_with_metadata(send_data).then(function(response) {
+        let folder_metadata = self.metadata_map[old_path]
+        folder_metadata['name'] = new_folder_name;
+        folder_metadata['path'] = new_path;
+        
+
+        self.tsp.DomActions._rename_tree_note_folder_with_metadata(uuid, folder_metadata).then(function(response) {
             /*Update the Tree list if we do the file raname from within the Starred tab*/
 
             return def.resolve(response);
         });
         return def.promise();
     }
+    sanitize_name(name){
+        // sanitize both the filename and folder name
+        if( name.indexOf('\/')  >=0 || name.replace(" ", "") == "" ){
+            return false;
+        }
+
+    }
     __internal_file_rename(uuid, old_path, new_path, new_name) {
         let self = this;
         let def = $.Deferred();
         let new_file_name = $('#tree-note-file-rename').val();
-        //            self.label_map[file_key].name = new_file_name;
-        let send_data = {
-            'uuid': uuid,
-            'new_path': new_path,
-            'new_name': new_name
+        if(!self.sanitize_name(new_file_name)){
+            let list_of_invalid_chars = "\, \/, <space>" 
+            self.tsp.NotificationBar.launch_notification('Please dont use '+ list_of_invalid_chars);
+            return;
         }
-        self.tsp.DomActions._rename_tree_note_files_with_metadata(send_data).then(function(response) {
+        let file_metadata = self.metadata_map[old_path]
+        file_metadata['name'] = new_file_name;
+        file_metadata['path'] = new_path;
+        
+       
+        self.tsp.DomActions._rename_tree_note_files_with_metadata(uuid, file_metadata).then(function(response) {
 
             /*Updating Tabs section after cut paste*/
             let target_tab = $(`#tab-container > .tab [file-path='${old_path}']`)[0];
@@ -763,7 +796,7 @@ export default class TreeClass {
                 uuid = '';
             if (self.curr_active_folder !== undefined) {
                 old_path = $(qq).attr('folder-path');
-                old_name = $(qq).attr('title');
+                old_name = $(qq).attr('folder-name');
                 uuid = $(qq).attr('folder-uuid');
             } else {
                 old_path = $(qq).attr('file-path');
@@ -825,7 +858,7 @@ export default class TreeClass {
         $('#tree-note-file-rename').on('blur', function() {
             private_rename($(this).val());
         });
-        private_rename($('#rename-tree-file-text-box').val());
+        //private_rename($('#rename-tree-file-text-box').val());
     }
     starr_it(file_or_folder_path) {
         /*star or unstar the tree file*/
@@ -842,9 +875,10 @@ export default class TreeClass {
     restore() {
         /* Restore the deleted tree file to "Trash Restored" folder */
         let self = this;
-        let uuid = self.metadata_map[self.curr_active_file].uuid;
+        let metadata = self.metadata_map[self.curr_active_file];
+        let uuid = metadata.uuid;
         let path = self.curr_active_file;
-        self.tsp.DomActions.restore_tree_file(uuid).then(function() {
+        self.tsp.DomActions.restore_tree_file(uuid, metadata).then(function() {
             self.metadata_map[path]['trash'] = false;
             self.action_function_map.move_to_trash_restored_in_UI(path, uuid);
             self._events();
@@ -1012,10 +1046,11 @@ export default class TreeClass {
                             path = self.curr_active_folder;
                             delete_type = 'folder';
                         } else {
-                            uuid = self.metadata_map[self.curr_active_file].uuid;
+                            let metadata = self.metadata_map[self.curr_active_file];
+                            uuid = metadata.uuid;
                             path = self.curr_active_file;
                             delete_type = 'file';
-                            self.tsp.DomActions._delete_project_note_file(uuid).then(function() {
+                            self.tsp.DomActions._delete_project_note_file(uuid, metadata).then(function() {
                                 self.metadata_map[path]['trash'] = true;
                                 self.metadata_map[path]['starred'] = false;
                                 self.metadata_map[path]['path'] = self.local_constants.trash_restored + self.local_constants.slash + self.metadata_map[path]['name'];
@@ -1172,11 +1207,11 @@ export default class TreeClass {
         let self = this;
         let def_obj = $.Deferred();
         if (reason_for_building == 'for-rename') {
-            $('#myUL').empty();
-            $('.tree-trash-tab-class').empty();
-            $('.tree-starr-tab-class').empty();
+//            $('#myUL').empty();
+//            $('.tree-trash-tab-class').empty();
+//            $('.tree-starr-tab-class').empty();
         }
-        self._get_tree_structure_metadata().then(function(res) {
+        self.load_tree_metadata_from_firebase().then(function(res) {
             self.metadata_map = res[1];
             self.untitled_map = res[2];
             let tree_html = self._get_html(res[0], self.root_name);
@@ -1195,6 +1230,15 @@ export default class TreeClass {
                 }
             });
             return def_obj.resolve();
+        });
+        return def_obj.promise();
+    }
+    load_tree_metadata_from_firebase() {
+        let self = this;
+        let def_obj = $.Deferred();
+        self.tsp.TreeNoteFirebase.read_tree_view_metadata().then((tree_metadata) => {
+            self.tsp.GlobalConstants.tree_metadata = tree_metadata;
+            return def_obj.resolve(tree_metadata);
         });
         return def_obj.promise();
     }

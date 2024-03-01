@@ -17,6 +17,53 @@ export default class GlobalConstants {
         self.quick_file_starred = 'File Starred';
         self.quick_file_unstarred = 'File UnStarred';
         self.quick_note_const = "QuickNote";
+        self.tree_note_const = "TreeNote";
+        self.tree_note = { 
+            "META_DATA": "metadata",
+            "mandatory_metadata": {
+                                        "delete-folder-uuid-14cb-4ec1-9fdc-0783951a365d": {
+                                            "date_created": "",
+                                            "last_updated": "",
+                                            "type": "code",
+                                            "path": "Trash",
+                                            "name": "Trash",
+                                            "folder_type": "folder"
+                                        },
+                                        "starred-folder-uuid-14cb-4ec1-9fdc-0783951a365d": {
+                                            "date_created": "",
+                                            "last_updated": "",
+                                            "type": "code",
+                                            "path": "Starred",
+                                            "name": "Starred",
+                                            "folder_type": "folder"
+                                        },
+                                        "folder-uuid-14cb-4ec1-9fdc-0783951a365d": {
+                                            "date_created": "",
+                                            "last_updated": "",
+                                            "type": "code",
+                                            "path": "Some Root Folder",
+                                            "name": "Some Root Folder",
+                                            "language": "document",
+                                            "folder_type": "folder"
+                                        },
+                                        "folder-uuid-14cb-4ec1-9fdc-0783951a365daxq": {
+                                        "date_created": "",
+                                        "last_updated": "",
+                                        "type": "code",
+                                        "path": "Trash Restored",
+                                        "name": "Trash Restored",
+                                        "language": "document",
+                                        "folder_type": "folder"
+                                    }
+            }
+        }
+        self.generate_UUID = function() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0,
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
         self.window_width = window.innerWidth;
         self.window_height = window.innerHeight;
         self.quick_file_welcome_content = `

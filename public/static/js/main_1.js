@@ -20,8 +20,10 @@ import Utils from './utils.js';
 import FcBarcelona from './utils/ToDecrypter.js'
 import {
     FireBase,
-    QuickNoteFirebase
+    QuickNoteFirebase,
 } from './FireBase.js';
+
+import { TreeNoteFireBase } from './treeViewFirebase.js'; './TreeViewFirebase.js';
 
 class Tsp {
     constructor() {}
@@ -51,15 +53,16 @@ $(document).ready(function() {
         FireBase,
         Utils,
         QuickNoteFirebase,
+        TreeNoteFireBase,
         Dialog,
         DomActions,
         //        IndexedDb,
         Header,
         loadComponentsContainer,
-        //                TreeClass,
+                       TreeClass,
         //        CreateEditIcons,
         //                TreeCRUD,
-        //                SourceCodeSection,
+                       SourceCodeSection,
         SearchBox,
         DetailsPanel,
         NotificationBar,

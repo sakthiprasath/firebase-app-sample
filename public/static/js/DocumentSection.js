@@ -37,7 +37,7 @@ export default class SourceCodeSection{
                 $(curr).parent().addClass('tab-active');
                 let file_name = $(curr).text();
                 this.getComponentHtmlFromServer(file_path).then(function(res){
-                    let content = JSON.parse(res)["content"]
+                    let content = res["content"]
                     self._fill_test_area(content, type).then(function(){
                     }).fail(function(){
                         self.tsp.NotificationBar.launch_notification('Unable To Fetch The file');
@@ -78,17 +78,22 @@ export default class SourceCodeSection{
         }
         var defObj=$.Deferred();
                 var promise =
-                    $.ajax
-                    ({
-//                        url: 'http://localhost:5000/api/individual-component-fetch/save-file?file_path=' + (file_path),
-                        url: 'http://localhost:5000/api/tree-note/save-file/' + file_uuid,
-                        data: JSON.stringify(savable_data),
-                        type : "POST",
-                        contentType: 'application/json;charset=UTF-8',
-                        success : function(response){
-                            return defObj.resolve(response);
-                        }
-                    });
+//                     $.ajax
+//                     ({
+// //                        url: 'http://localhost:5000/api/individual-component-fetch/save-file?file_path=' + (file_path),
+//                         url: 'http://localhost:5000/api/tree-note/save-file/' + file_uuid,
+//                         data: JSON.stringify(savable_data),
+//                         type : "POST",
+//                         contentType: 'application/json;charset=UTF-8',
+//                         success : function(response){
+//                             return defObj.resolve(response);
+//                         }
+//                     });
+        
+
+        self.tsp.TreeClass.action_function_map.update_tree_note_submit(file_uuid, savable_data, self.tsp.TreeClass.metadata_map[file_path]).then(function(response){
+            return defObj.resolve(response);
+        });
         return defObj.promise();
 }
 
@@ -196,17 +201,22 @@ export default class SourceCodeSection{
         else
             file_uuid = self.tsp.TreeClass.metadata_map[file_path]["uuid"];
         var defObj=$.Deferred();
-            var promise =
-                $.ajax
-                ({
-                    //url:'http://localhost:5000/api/individual-component-fetch/general_files/separate_project?file_path='+ JSON.stringify(file_path),
-                    url:'http://localhost:5000/api/tree-note/get-file-data/' + file_uuid,
-                    type : "GET",
-                    contentType:'application/x-www-form-urlencoded',
-                    success : function(response){
-                        return defObj.resolve(response);
-                    }
-                });
+        // var promise =
+        //         $.ajax
+        //         ({
+        //             //url:'http://localhost:5000/api/individual-component-fetch/general_files/separate_project?file_path='+ JSON.stringify(file_path),
+        //             url:'http://localhost:5000/api/tree-note/get-file-data/' + file_uuid,
+        //             type : "GET",
+        //             contentType:'application/x-www-form-urlencoded',
+        //             success : function(response){
+        //                 return defObj.resolve(response);
+        //             }
+        //         });
+
+            var promise = self.tsp.TreeNoteFirebase.read_single_file(file_uuid).then(function(response){
+                console.log(response);
+                return defObj.resolve(response);
+            });
             return defObj.promise();
         };
 
@@ -483,15 +493,24 @@ export default class SourceCodeSection{
 
     init(tsp, to_return_values){
 //        this._initialise_summer_note();
+        console.log("i am in document section-----1");
+        
         tsp.SourceCodeSection = this;
         this.tsp = tsp;
-        this.summer_note_ele = document.getElementById('summer-note-iframe-id').contentWindow.document.getElementsByClassName('note-editable')[0];
+        // this.summer_note_ele = document.getElementById('summer-note-iframe-id').contentWindow.document.getElementsByClassName('note-editable')[0];
+
+        
 //        this.build_untitled_tabs();
+        console.log("i am in document section-----2");
         this.events(); //this might be called more than once ondemand
         this.multi_tab_flag = true;
+        console.log("i am in document section-----");
+        
 //        this._tabs_dropdown_click();
 //        this._move_tabs_for_source_code_section();
+        console.log("i am in document section");
         this.tree_note_settings();
+
         return $.Deferred().resolve(tsp, to_return_values);
     }
 

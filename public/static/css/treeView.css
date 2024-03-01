@@ -35,13 +35,14 @@
 .plus.circle.icon,
 .minus.circle.icon {
     position: absolute;
-    font-size: 15px;
-    padding: 6px;
+    margin-left: -7px;
+    margin-top: 9px;
+    font-size: 12px;
 }
 
 i.icon,
 i.icons {
-    color: #035397 !important;
+    color: #0075ff;
 }
 
 
@@ -53,12 +54,15 @@ ul,
 }
 
 #myUL {
-    margin: 0px 0 0 5px;
+    margin: 0px 0 0 0px;
     padding: 0;
     overflow: scroll;
     width: max-content;
     left: -10px;
     position: relative;
+    height: 79%;
+    width: 100%;
+    border: 1px solid #e9f3ed;
 }
 
 .folder-section {
@@ -68,7 +72,7 @@ ul,
     margin-left: -10px;
 }
 
-#myUL .folder {
+#myUL .folder {     
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -248,15 +252,13 @@ span.tree-note-file-name:hover {
     height: 20px;
     background: #e9f3ed;
 }
-
-
 /*modal size on tree clone*/
 
-.model-content-on-tree-clone {
-    width: 90% !important;
+.model-content-on-tree-clone{
+        width: 90% !important;
     height: 90%;
     margin-top: -55px;
     position: absolute !important;
     left: 6%;
     padding: 50px;
-}
+    }

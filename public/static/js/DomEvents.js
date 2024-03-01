@@ -25,9 +25,26 @@ export default class DomEvents {
             setTimeout(function() {
                 $('#close-editor-button').click();
             }, 200)
-            $('#stream-youtube-video').click();
+            // $('#stream-youtube-video').click();
             self._triggerClick('#main-section-button');
+            
 
+
+
+            function temp_function(){
+                $('#sidenav-button-id').click();
+                $('#sidenav-button-id').click();
+                // $('#main-section-button').click()
+
+                // var q1 = $('.tree-note-file-name')
+
+                // for(let i=0;i<q1.length;i++){
+
+                //     q1[i].click()
+
+                // }
+            }
+            temp_function();
         }, 1500);
 
 
@@ -274,7 +291,7 @@ export default class DomEvents {
         let def_obj = $.Deferred();
         self.tsp.QuickNoteFirebase.read_common_setting_file().then((common_setting_data) => {
             self.tsp.GlobalConstants.common_setting_data = common_setting_data;
-            self.load_common_settings_in_DOM(common_setting_data);
+            // self.load_common_settings_in_DOM(common_setting_data);
             return def_obj.resolve();
         });
         return def_obj.promise();
@@ -287,8 +304,8 @@ export default class DomEvents {
         tsp.DomEvents = this;
         this.action_obj = new DomActions();
         this.load_common_setting_from_firebase().then(() => {
-            this._download_video_click_event();
-            this._initialize_tool_tips();
+            // this._download_video_click_event();
+            // this._initialize_tool_tips();
             this._create_event_listeners_for_dragbar();
             //        this._initialize_local_video_Stream();
             this._button_clicks();

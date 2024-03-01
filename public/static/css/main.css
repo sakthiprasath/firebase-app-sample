@@ -1185,7 +1185,7 @@ box-shadow:10 2 2 2;
         #main-sections {
             position: absolute;
             top: 0%;
-            width: 100%;
+            width: calc(100%  - 55px);
             height: 100%;
             z-index: 4;
             left: 50px;

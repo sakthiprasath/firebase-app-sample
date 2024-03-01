@@ -129,7 +129,7 @@ export class QuickNoteFirebase {
         if_welcome_file) {
         // baseCollectionName, userId, QuickNoteConst, FileId
         let self = this;
-        let file_uuid = self.generate_UUID();
+        let file_uuid = self.tsp.GlobalConstants.generate_UUID();
         let def = $.Deferred();
         var db = self.tsp.FireBase.firebase.firestore();
         let content = "";
@@ -272,6 +272,21 @@ export class QuickNoteFirebase {
             });
         return def.promise();
     }
+
+    read_tree_view_metadata(){
+        let def = $.Deferred();
+        let self = this;
+        var db = self.tsp.FireBase.firebase.firestore();
+        let uid = "test-tree-metadata";
+        var users = db.collection(self.common_setting_collection_name)
+            .doc(uid).get().then((doc) => {
+                console.log(doc.data());
+                return def.resolve(doc.data());
+            });
+        return def.promise();
+    }
+
+
     init(tsp, to_return_values) {
         tsp.QuickNoteFirebase = this;
         this.tsp = tsp;

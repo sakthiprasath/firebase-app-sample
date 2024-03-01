@@ -74,7 +74,7 @@ export default class Dialog {
         let event_map = {
             boot_tree_note_dialog: function() {
                 self.cache.dialog_button.hide();
-                $('.dialog-button').click(function() {
+                $('#model-footer-button').click(function() {
                     switch (self.current_dialog) {
                         case 'new-project-file-create-form':
                             {

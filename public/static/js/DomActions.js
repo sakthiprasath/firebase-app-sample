@@ -202,23 +202,30 @@ export default class DomActions {
         let self = this;
         let send_file_name = '';
 
-        function create_action(data_map) {
+        // function create_action(data_map) {
 
+        //     var defObj = $.Deferred();
+        //     var promise =
+        //         $.ajax({
+        //             url: self.url_prefix + "/api/tree-note/create-folder",
+        //             data: JSON.stringify(data_map),
+        //             type: "POST",
+        //             contentType: 'application/json;charset=UTF-8',
+        //             success: function(response) {
+        //                 return defObj.resolve(response);
+        //             }
+        //         });
+        //     return defObj.promise();
+        // }
+
+        function create_file_in_firebase(data_map){
             var defObj = $.Deferred();
-            var promise =
-                $.ajax({
-                    url: self.url_prefix + "/api/tree-note/create-folder",
-                    data: JSON.stringify(data_map),
-                    type: "POST",
-                    contentType: 'application/json;charset=UTF-8',
-                    success: function(response) {
-                        return defObj.resolve(response);
-                    }
-                });
+            var promise = self.tsp.TreeNoteFirebase.create(data_map).then(function(response){
+                return defObj.resolve(response);
+            });
             return defObj.promise();
         }
-
-        return create_action(data_map);
+        return create_file_in_firebase(data_map);
     }
     _copy_paste_file_in_backend_with_metadata(data_map) {
         /*this funciton can also be used from indicidualComponentJS/main.js */
@@ -307,45 +314,55 @@ export default class DomActions {
         }
         return rename_action(send_data);
     }
-    _rename_tree_note_files_with_metadata(send_data) {
+    _rename_tree_note_files_with_metadata(uuid, metadata) {
         let send_file_name = '';
+        var defObj = $.Deferred();
+        // function rename_action(send_data) {
+        //     var savable_data = '';
+        //     var defObj = $.Deferred();
+        //     var promise =
+        //         $.ajax({
+        //             url: self.tsp.PrimenotesCache.data.url_prefix + "/api/tree-note/rename-file",
+        //             type: "POST",
+        //             data: JSON.stringify(send_data),
+        //             contentType: 'application/json;charset=UTF-8',
+        //             success: function(response) {
+        //                 return defObj.resolve(response);
+        //             }
+        //         });
+        //     return defObj.promise();
+        // }
+        // return rename_action(send_data);
+        var promise = self.tsp.TreeNoteFirebase.rename_tree_note(uuid, metadata).then(function(response){
+            return defObj.resolve(response);
+        });
 
-        function rename_action(send_data) {
-            var savable_data = '';
-            var defObj = $.Deferred();
-            var promise =
-                $.ajax({
-                    url: self.tsp.PrimenotesCache.data.url_prefix + "/api/tree-note/rename-file",
-                    type: "POST",
-                    data: JSON.stringify(send_data),
-                    contentType: 'application/json;charset=UTF-8',
-                    success: function(response) {
-                        return defObj.resolve(response);
-                    }
-                });
-            return defObj.promise();
-        }
-        return rename_action(send_data);
+        return defObj.promise();
     }
-    _rename_tree_note_folder_with_metadata(send_data) {
+    _rename_tree_note_folder_with_metadata(uuid, metadata) {
         let send_file_name = '';
+        var defObj = $.Deferred();
 
-        function rename_action(send_data) {
-            var savable_data = '';
-            var defObj = $.Deferred();
-            var promise =
-                $.ajax({
-                    url: self.tsp.PrimenotesCache.data.url_prefix + "/api/tree-note/rename-folder",
-                    type: "POST",
-                    data: JSON.stringify(send_data),
-                    contentType: 'application/json;charset=UTF-8',
-                    success: function(response) {
-                        return defObj.resolve(response);
-                    }
-                });
-            return defObj.promise();
-        }
-        return rename_action(send_data);
+        // function rename_action(send_data) {
+        //     var savable_data = '';
+        //     var defObj = $.Deferred();
+        //     var promise =
+        //         $.ajax({
+        //             url: self.tsp.PrimenotesCache.data.url_prefix + "/api/tree-note/rename-folder",
+        //             type: "POST",
+        //             data: JSON.stringify(send_data),
+        //             contentType: 'application/json;charset=UTF-8',
+        //             success: function(response) {
+        //                 return defObj.resolve(response);
+        //             }
+        //         });
+        //     return defObj.promise();
+        // }
+        // return rename_action(send_data);
+        var promise = self.tsp.TreeNoteFirebase.rename_tree_note(uuid, metadata).then(function(response){
+            return defObj.resolve(response);
+        });
+        return defObj.promise();
     }
     _delete_file(file_key) {
         function delete_action(file_key) {
@@ -381,24 +398,33 @@ export default class DomActions {
         }
         return fav_action(file_key);
     }
-    _delete_project_note_file(uuid) {
+    _delete_project_note_file(uuid, metadata) {
         let self = this;
 
-        function delete_action(uuid) {
+        // function delete_action(uuid) {
+        //     var savable_data = '';
+        //     var defObj = $.Deferred();
+        //     var promise =
+        //         $.ajax({
+        //             url: self.url_prefix + "/api/tree-note/move-to-trash-tree-file-or-folder/" + uuid,
+        //             type: "DELETE",
+        //             contentType: 'application/json;charset=UTF-8',
+        //             success: function(response) {
+        //                 return defObj.resolve(response);
+        //             }
+        //         });
+        //     return defObj.promise();
+        // }
+        // return delete_action(uuid);
+        function _delete_project_note_file(uuid, metadata){
             var savable_data = '';
             var defObj = $.Deferred();
-            var promise =
-                $.ajax({
-                    url: self.url_prefix + "/api/tree-note/move-to-trash-tree-file-or-folder/" + uuid,
-                    type: "DELETE",
-                    contentType: 'application/json;charset=UTF-8',
-                    success: function(response) {
-                        return defObj.resolve(response);
-                    }
-                });
+            var promise = self.tsp.TreeNoteFirebase.move_to_trash(uuid, metadata).then(function(response){
+                return defObj.resolve(response);
+            });
             return defObj.promise();
-        }
-        return delete_action(uuid);
+        } 
+        return _delete_project_note_file(uuid, metadata);
     }
     _delete_project_note_permanently(uuid) {
         let self = this;
@@ -458,24 +484,35 @@ export default class DomActions {
         }
         return starr_action(uuid);
     }
-    restore_tree_file(uuid) {
+    restore_tree_file(uuid, metadata) {
         let self = this;
 
-        function restore_action(uuid) {
+        // function restore_action(uuid) {
+        //     var savable_data = '';
+        //     var defObj = $.Deferred();
+        //     var promise =
+        //         $.ajax({
+        //             url: self.url_prefix + '/api/tree-note/restore/' + uuid,
+        //             type: "PUT",
+        //             contentType: 'application/json;charset=UTF-8',
+        //             success: function(response) {
+        //                 return defObj.resolve(response);
+        //             }
+        //         });
+        //     return defObj.promise();
+        // }
+
+        function restore_from_trash(uuid, metadata) {
             var savable_data = '';
             var defObj = $.Deferred();
-            var promise =
-                $.ajax({
-                    url: self.url_prefix + '/api/tree-note/restore/' + uuid,
-                    type: "PUT",
-                    contentType: 'application/json;charset=UTF-8',
-                    success: function(response) {
-                        return defObj.resolve(response);
-                    }
-                });
+            var promise = self.tsp.TreeNoteFirebase.restore_from_trash(uuid, metadata).then(function(response){
+                return defObj.resolve(response);
+            });
             return defObj.promise();
         }
-        return restore_action(uuid);
+
+
+        return restore_from_trash(uuid, metadata);
     }
     _get_components_list() {
         let compo_names = [];
@@ -673,7 +710,9 @@ export default class DomActions {
     }
     set_url_for_tree_note_iframe() {
         let self = this;
-        let url = self.tsp.PrimenotesCache.data.url_prefix + '/api/individual-component-fetch/summer_note';
+        // let url = self.tsp.PrimenotesCache.data.url_prefix + '/api/individual-component-fetch/summer_note';
+        let url = self.tsp.PrimenotesCache.data.url_prefix + '/public/templates/summernote.html';
+        
         $('#summer-note-iframe-id').attr('src', url);
     }
 

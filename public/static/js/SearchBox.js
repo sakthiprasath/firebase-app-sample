@@ -93,7 +93,7 @@ export default class TreeClass{
         let self = this;
         tsp.SearchBox = this;
         this.tsp = tsp;
-
+        console.log("insearch box");
         this._build_searchbox();
         this._events();
 
